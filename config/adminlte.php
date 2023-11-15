@@ -540,16 +540,6 @@ return [
                 ],
             ],
         ],
-        'BootstrapSwitch' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => 'vendor/bootstrap-switch-3.3.4/dist/js/bootstrap-switch.min.js',
-                ],
-            ],
-        ],
         'KrajeeFileinput' => [
             'active' => false,
             'files' => [
