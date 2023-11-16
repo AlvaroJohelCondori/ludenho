@@ -292,31 +292,15 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
         [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
+            'text'        => 'Inicio',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-fw fa-home',
-            'label'       => 4,
-            'label_color' => 'success',
         ],
         ['header' => 'ADMINISTRADOR'],
         [
@@ -331,59 +315,16 @@ return [
             'icon' => 'far fa-fw fa-bookmark',
             'active' => ['admin/materials*'],
         ],
+        ['header' => 'OPCIONES DE PRODUCTO'],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'Productos',
+            'route' => 'admin.products.index',
+            'icon' => 'fas fa-fw fa-clipboard',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Nuevo Producto',
+            'route' => 'admin.products.create',
+            'icon' => 'fas fa-fw fa-file',
         ],
     ],
 
@@ -577,6 +518,21 @@ return [
                 ],
             ],
         ],
+        'Summernote' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.min.css',
+                ],
+            ],
+        ],
     ],
 
     /*
@@ -624,5 +580,5 @@ return [
     |
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
