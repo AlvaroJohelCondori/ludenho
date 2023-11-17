@@ -14,6 +14,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nombre Producto</th>
                             <th scope="col">Nombre Amigable</th>
+                            <th scope="col">Foto</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -24,6 +25,17 @@
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->product_name }}</td>
                                     <td>{{ $product->product_slug }}</td>
+                                    <td>
+                                        @if ($product->image)
+                                            <a href="{{ Storage::url($product->image->url) }}"
+                                                data-lightbox="{{ $product->id }}">
+                                                <img class="rounded" src="{{ Storage::url($product->image->url) }}"
+                                                    width="75px" height="75px" alt="">
+                                            </a>
+                                        @else
+                                            <span>No hay imagen</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="#" class="btn btn-xs btn-default text-teal mx-1 shadow"
                                             title="Ver">

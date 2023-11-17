@@ -24,7 +24,7 @@ class ProductsIndex extends Component
         $products = Product::where('user_id', auth()->user()->id)
             ->where('product_name', 'LIKE', '%' . $this->search . '%')
             ->latest('id')
-            ->paginate(10);
+            ->paginate(5);
 
         return view('livewire.admin.products-index', compact('products'));
     }

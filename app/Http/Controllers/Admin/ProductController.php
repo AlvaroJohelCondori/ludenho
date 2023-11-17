@@ -7,6 +7,8 @@ use App\Models\Category;
 use App\Models\Material;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -32,9 +34,21 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        return $request->all();
+        //return Storage::put('products', $request->file('product_image'));
+        $product = Product::create($request->all());
+
+        if ($request->file('product_image')) {
+            $url = Storage::put('products', $request->file('product_image'));
+            $product->image()->create([
+                'url' => $url,
+            ]);
+        }
+        if ($request->materials) {
+            $product->materials()->attach($request->materials);
+        }
+        return redirect()->route('admin.products.index')->with('create', 'EL producto se creó correctamente.');
     }
 
     /**

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('product_name');
             $table->string('product_slug');
-            $table->text('product_extract');
-            $table->longText('product_body');
+            $table->text('product_extract')->nullable();
+            $table->longText('product_body')->nullable();
             $table->enum('product_status', [1, 2])->default(1);
             $table->timestamps();
         });

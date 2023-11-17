@@ -9,6 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['url'];
+
     // Relaciones polimorfica uno a uno
     public function imageable_id()
     {

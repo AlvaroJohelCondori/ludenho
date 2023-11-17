@@ -9,6 +9,22 @@ class Product extends Model
 {
     use HasFactory;
 
+    /*protected $fillable = [
+        'category_id ',
+        'user_id ',
+        'product_name',
+        'product_slug',
+        'product_extract',
+        'product_body',
+        'product_status',
+    ];*/
+
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     // Relación uno a muchos inversa de categorías con productos
     public function category()
     {

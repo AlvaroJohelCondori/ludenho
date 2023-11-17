@@ -9,12 +9,14 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('admin.products.store') }}" method="POST">
+            <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <div class="row">
                     <div class="col">
                         <x-adminlte-input name="product_name" id="product_name" label="Nombre Producto"
-                            placeholder="Nombre del producto" label-class="text-lightblue" value="{{ old('product_name') }}">
+                            placeholder="Nombre del producto" label-class="text-lightblue"
+                            value="{{ old('product_name') }}">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
                                     <i class="fas fa-user text-lightblue"></i>
@@ -33,8 +35,6 @@
                             </x-slot>
                         </x-adminlte-input>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col">
                         <x-adminlte-select name="category_id" label="Selecionar Categoría" label-class="text-lightblue">
                             <x-slot name="prependSlot">
@@ -47,7 +47,7 @@
                             @endforeach
                         </x-adminlte-select>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-2 col-md-2 col-sm-12">
                         <label class="text-info">Estado Producto</label>
                         <div class="form-group">
                             <div class="custom-control custom-radio">
@@ -75,6 +75,9 @@
                                 </label>
                             </div>
                         @endforeach
+                        @error('materials')
+                            <small class="text-danger"><strong>{{ $message }}</strong></small>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
@@ -110,9 +113,12 @@
                                 'theme' => 'explorer-fa5',
                             ];
                         @endphp
-                        <x-adminlte-input-file-krajee name="kifLabel" label="Seleccionar Fotos"
-                            data-msg-placeholder="Choose a text, office or pdf file..." label-class="text-primary"
-                            :config="$config" disable-feedback multiple />
+                        <x-adminlte-input-file-krajee name="product_image" label="Seleccionar Fotos"
+                            data-msg-placeholder="Seleccione una imagen realacionado al producto..."
+                            label-class="text-primary" :config="$config" disable-feedback />
+                        @error('product_image')
+                            <small class="text-danger"><strong>{{ $message }}</strong></small>
+                        @enderror
                     </div>
                 </div>
                 <div class="row">
