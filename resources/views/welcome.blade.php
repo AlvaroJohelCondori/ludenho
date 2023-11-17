@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg fixed-top">
                 <div class="container-fluid">
@@ -53,7 +53,7 @@
         </div>
     </header>
     <main>
-        <section id="section1" style="position: relative;">
+        <section id="section1">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
@@ -68,58 +68,204 @@
                         </div>
                     </div>
                 </div>
-                <div style="position: absolute; bottom: 0; right: 0;">
+                <div class="animate__animated animate__backInLeft" style="position: absolute; bottom: 0; right: 0;">
                     <img src="{{ asset('img/insignia.png') }}" alt="Imagen Redonda" class="img-fluid rounded-circle"
                         width="300" height="300">
                 </div>
             </div>
         </section>
-        <section id="section2" class="bg-light text-dark">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <a href="{{ asset('img/portada-principal-2.jpg') }}" data-lightbox="gallery"
-                                data-title="Imagen 1">
-                                <img class="card-img-top" src="{{ asset('img/portada-principal-2.jpg') }}"
-                                    alt="Imagen 1">
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <a href="{{ asset('img/portada-principal-3.jpg') }}" data-lightbox="gallery"
-                                data-title="Imagen 1">
-                                <img class="card-img-top" src="{{ asset('img/portada-principal-3.jpg') }}"
-                                    alt="Imagen 1">
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <a href="{{ asset('img/portada-principal-4.jpg') }}" data-lightbox="gallery"
-                                data-title="Imagen 1">
-                                <img class="card-img-top" src="{{ asset('img/portada-principal-4.jpg') }}"
-                                    alt="Imagen 1">
-                            </a>
+        <section id="section2" class="bg-light" style="height: 100vh; padding-top: 100px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <h2>Productos</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam dolore minima rerum, voluptatem
+                            assumenda, deserunt explicabo debitis doloremque beatae maiores iste ullam atque eaque
+                            similique eligendi molestias enim non? Aliquam!</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div id="carouselProducts1" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselProducts1" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselProducts1" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselProducts1" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="{{ asset('img/portada-principal-2.jpg') }}" data-lightbox="gallery"
+                                        data-title="...">
+                                        <img src="{{ asset('img/portada-principal-2.jpg') }}"
+                                            style="width: 300px; height: 300px; object-fit: cover;"
+                                            class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block my-shadown">
+                                        <h5>First slide label</h5>
+                                        <button class="btn btn-sm btn-warning">Ver Producto</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="{{ asset('img/portada-principal-3.jpg') }}" data-lightbox="gallery"
+                                        data-title="...">
+                                        <img src="{{ asset('img/portada-principal-3.jpg') }}"
+                                            style="width: 300px; height: 300px; object-fit: cover;"
+                                            class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block my-shadown">
+                                        <h5>Second slide label</h5>
+                                        <button class="btn btn-sm btn-warning">Ver Producto</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="{{ asset('img/portada-principal-4.jpg') }}" data-lightbox="gallery"
+                                        data-title="...">
+                                        <img src="{{ asset('img/portada-principal-4.jpg') }}"
+                                            style="width: 300px; height: 300px; object-fit: cover;"
+                                            class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block my-shadown">
+                                        <h5>Third slide label</h5>
+                                        <button class="btn btn-sm btn-warning">Ver Producto</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts1"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts1"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <a href="#section3" class="btn btn-primary btn-lg">Bajar</a>
-                    <a href="#section1" class="btn btn-primary btn-lg">Subir</a>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12">
+                        <div id="carouselProducts2" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselProducts2" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselProducts2" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselProducts2" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="{{ asset('img/portada-principal-3.jpg') }}"
+                                                data-lightbox="gallery" data-title="...">
+                                                <img src="{{ asset('img/portada-principal-3.jpg') }}"
+                                                    style="width: 400px; height: 400px; object-fit: cover;"
+                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="{{ asset('img/portada-principal-4.jpg') }}"
+                                                data-lightbox="gallery" data-title="...">
+                                                <img src="{{ asset('img/portada-principal-4.jpg') }}"
+                                                    style="width: 400px; height: 400px; object-fit: cover;"
+                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-caption d-none d-md-block my-shadown">
+                                        <h5 class="fw-bold">First slide label</h5>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                        <button class="btn btn-sm btn-info">Ver Producto</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="{{ asset('img/portada-principal-8.jpg') }}" data-lightbox="gallery"
+                                        data-title="...">
+                                        <img src="{{ asset('img/portada-principal-8.jpg') }}"
+                                            style="width: 400px; height: 400px; object-fit: cover;"
+                                            class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block my-shadown">
+                                        <h5 class="fw-bold">Second slide label</h5>
+                                        <p>Some representative placeholder content for the second slide.</p>
+                                        <button class="btn btn-sm btn-info">Ver Producto</button>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="{{ asset('img/portada-principal-5.jpg') }}"
+                                                data-lightbox="gallery" data-title="...">
+                                                <img src="{{ asset('img/portada-principal-5.jpg') }}"
+                                                    style="width: 400px; height: 400px; object-fit: cover;"
+                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="{{ asset('img/portada-principal-6.jpg') }}"
+                                                data-lightbox="gallery" data-title="...">
+                                                <img src="{{ asset('img/portada-principal-6.jpg') }}"
+                                                    style="width: 400px; height: 400px; object-fit: cover;"
+                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <a href="{{ asset('img/portada-principal-10.jpg') }}"
+                                                data-lightbox="gallery" data-title="...">
+                                                <img src="{{ asset('img/portada-principal-10.jpg') }}"
+                                                    style="width: 400px; height: 400px; object-fit: cover;"
+                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-caption d-none d-md-block my-shadown">
+                                        <h5 class="fw-bold">Third slide label</h5>
+                                        <p>Some representative placeholder content for the third slide.</p>
+                                        <button class="btn btn-sm btn-info">Ver Producto</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts2"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts2"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <h2>Productos</h2>
+                        <p>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel expedita aut deleniti tenetur
+                            delectus magnam impedit iusto corrupti. Ut voluptate quas repellendus error qui, nesciunt
+                            ipsam ab sunt corrupti fuga.
+                        </p>
+                        <p>
+                            Como parte del servicio al cliente contamos con profesionales Arquitectos quienes se
+                            encargan de realizar:
+                        <ul>
+                            <li>Presupuesto.</li>
+                            <li>Medición de la Obra.</li>
+                            <li>Asesoramiento técnico.</li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col"><a href="#section1" class="btn btn-info btn-sm">Subir</a></div>
+                    <div class="col"><a href="#section3" class="btn btn-info btn-sm">Bajar</a></div>
                 </div>
             </div>
         </section>
-        <section id="section3" class="bg-success text-white">
-            <h1>Contactos</h1>
-            <a href="#section2" class="btn btn-primary btn-lg">Regresar</a>
-            <a href="#section4" class="btn btn-primary btn-lg">Bajar</a>
-        </section>
-        <section id="section4" class="bg-success text-white">
-            <h1>Acerca de nosotros</h1>
-            <a href="#section3" class="btn btn-primary btn-lg">Regresar</a>
-            <a href="#section5" class="btn btn-primary btn-lg">Bajar</a>
-        </section>
-    </main>
-    <footer>
-        <section id="section5" class="bg-light text-dark pt-5 pb-4">
+        <section id="section3" class="bg-light" style="height: 100vh; padding-top: 128px;">
             <div class="container text-center text-md-left">
                 <div class="row">
                     <div class="card mb-3">
@@ -194,6 +340,62 @@
                                 <i class="fab fa-whatsapp"></i> WhatsApp
                             </a>
                         </p>
+                        <a href="#section2" class="btn btn-info btn-sm">Subir</a>
+                        <a href="#section4" class="btn btn-info btn-sm">Bajar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="section4" class="bg-light" style="height: 100vh; padding-top: 128px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 class="mb-4">ACERCA DE NOSOTROS</h2>
+                        <h4>CONSTRUCCIÓN EN ARTE MODERNO</h4>
+                        <h6>LUDEÑO PLASMANDO TUS SUEÑOS</h6>
+                        <p class="lead">Que el trabajo hable por nosotros.</p>
+                        <p>100 % CALIDAD</p>
+                        <p>14 AÑOS DE EXPERIENCIA</p>
+                        <p>599 OBRAS FINALIZADAS</p>
+                        <a href="#section3" class="btn btn-info btn-sm">Subir</a>
+                        <a href="#section5" class="btn btn-info btn-sm">Bajar</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="{{ asset('img/portada-principal-5.jpg') }}" class="img-fluid"
+                            alt="Acerca de Nosotros">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section id="section5" class="bg-light text-dark">
+            <div class="container text-center text-md-left">
+                <div class="row">
+                    <div class="col">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <a href="{{ asset('img/portada-principal-4.jpg') }}" data-lightbox="gallery"
+                                        data-title="...">
+                                        <img src="{{ asset('img/portada-principal-4.jpg') }}"
+                                            class="img-fluid rounded-start" alt="...">
+                                    </a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Fachada Flotantes</h5>
+                                        <p class="card-text">Descripción de la fachada flotantes.</p>
+                                        <p class="card-text"><small class="text-body-secondary">Duración 25 días obra
+                                                bruta.</small></p>
+                                        <p class="card-text"><small class="text-body-secondary">Duración 35 días media
+                                                obra.</small></p>
+                                        <p class="card-text"><small class="text-body-secondary">Duración 15 días
+                                                finalización obra.</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

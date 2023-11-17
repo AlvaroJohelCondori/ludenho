@@ -102,6 +102,20 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col">
+                        @php
+                            $config = [
+                                'allowedFileTypes' => ['image'],
+                                'browseOnZoneClick' => true,
+                                'theme' => 'explorer-fa5',
+                            ];
+                        @endphp
+                        <x-adminlte-input-file-krajee name="kifLabel" label="Seleccionar Fotos"
+                            data-msg-placeholder="Choose a text, office or pdf file..." label-class="text-primary"
+                            :config="$config" disable-feedback multiple />
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col"><a href="{{ route('admin.products.index') }}"
                             class="btn btn-sm btn-danger">Cancelar</a></div>
                     <div class="col">
@@ -118,6 +132,7 @@
 @stop
 
 @section('plugins.Summernote', true)
+@section('plugins.KrajeeFileinput', true)
 
 @section('js')
     <script src="{{ asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js') }}"></script>
