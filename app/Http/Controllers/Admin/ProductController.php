@@ -64,6 +64,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('author', $product);
+
         $categories = Category::all();
         $materials = Material::all();
 
@@ -75,6 +77,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
+        $this->authorize('author', $product);
         //return Storage::put('products', $request->file('product_image'));
         $product->update($request->all());
 
@@ -102,6 +105,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('author', $product);
         $product->delete();
         return redirect()->route('admin.products.index')->with('delete', 'EL producto se elminó correctamente.');
     }
