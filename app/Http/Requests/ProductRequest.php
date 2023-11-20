@@ -4,18 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class ProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        if ($this->user_id == auth()->user()->id) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -25,12 +21,18 @@ class StoreProductRequest extends FormRequest
      */
     public function rules(): array
     {
+        $product = $this->route()->parameter('product');
+
         $rules = [
             'product_name' => 'required',
             'product_slug' => 'required|unique:products,product_slug',
             'product_status' => 'required|in:1,2',
             'product_image' => 'required|image',
         ];
+
+        if ($product) {
+            $rules['product_slug'] = 'required|unique:products,product_slug,' . $product->id;
+        }
 
         if ($this->product_status == 2) {
             $rules = array_merge($rules, [

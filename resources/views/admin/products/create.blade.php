@@ -11,7 +11,6 @@
         <div class="card-body">
             <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                 <div class="row">
                     <div class="col">
                         <x-adminlte-input name="product_name" id="product_name" label="Nombre Producto"

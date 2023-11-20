@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Material;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -34,7 +34,7 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(ProductRequest $request)
     {
         //return Storage::put('products', $request->file('product_image'));
         $product = Product::create($request->all());
@@ -64,15 +64,37 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', compact('product'));
+        $categories = Category::all();
+        $materials = Material::all();
+
+        return view('admin.products.edit', compact('product', 'categories', 'materials'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+        //return Storage::put('products', $request->file('product_image'));
+        $product->update($request->all());
+
+        if ($request->file('product_image')) {
+            $url = Storage::put('products', $request->file('product_image'));
+            if ($product->image) {
+                Storage::delete($product->image->url);
+                $product->image->update([
+                    'url' => $url
+                ]);
+            } else {
+                $product->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+        if ($request->materials) {
+            $product->materials()->sync($request->materials);
+        }
+        return redirect()->route('admin.products.index')->with('create', 'EL producto se actualizó correctamente.');
     }
 
     /**
@@ -80,6 +102,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('admin.products.index')->with('delete', 'EL producto se elminó correctamente.');
     }
 }
