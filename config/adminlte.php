@@ -298,9 +298,15 @@ return [
 
         // Sidebar items:
         [
-            'text'        => 'Inicio',
+            'text'        => 'Tablero',
             'route'         => 'admin.home',
             'icon'        => 'fas fa-fw fa-home',
+        ],
+        [
+            'text'        => 'Portada',
+            'route'         => 'admin.starts.index',
+            'icon'        => 'fas fa-fw fa-home',
+            'active' => ['admin/starts*'],
         ],
         ['header' => 'ADMINISTRADOR'],
         [

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Material;
+use App\Models\Start;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
         Category::factory(5)->create();
         Material::factory(10)->create();
         $this->call(ProductSeeder::class);
+        Start::factory(5)->create();
     }
 }
