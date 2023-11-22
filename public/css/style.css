@@ -22,7 +22,7 @@
 
 #section1 {
     height: 100vh;
-    background-image: url("../img/portada-principal-4.jpg");
+    background-image: url("../img/fondo.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,7 +33,7 @@
 }
 
 .card-principal {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .slide1 {
