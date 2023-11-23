@@ -26,12 +26,14 @@
                                     <td>{{ $product->product_name }}</td>
                                     <td>{{ $product->product_slug }}</td>
                                     <td>
-                                        @if ($product->image)
-                                            <a href="{{ Storage::url($product->image->url) }}"
-                                                data-lightbox="{{ $product->id }}">
-                                                <img class="rounded" src="{{ Storage::url($product->image->url) }}"
-                                                    width="75px" height="75px" alt="">
-                                            </a>
+                                        @if ($product->images)
+                                            @foreach ($product->images as $image)
+                                                <a href="{{ Storage::url($image->url) }}"
+                                                    data-lightbox="{{ $product->id }}">
+                                                    <img class="rounded" src="{{ Storage::url($image->url) }}"
+                                                        width="75px" height="75px" alt="">
+                                                </a>
+                                            @endforeach
                                         @else
                                             <span>No hay imagen</span>
                                         @endif

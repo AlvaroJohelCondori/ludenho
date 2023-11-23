@@ -12,7 +12,7 @@ class Image extends Model
     protected $fillable = ['url'];
 
     // Relaciones polimorfica uno a uno
-    public function imageable_id()
+    public function imageable()
     {
         return $this->morphTo();
     }

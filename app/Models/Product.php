@@ -44,8 +44,8 @@ class Product extends Model
     }
 
     // Relación polimórfica uno a uno
-    public function image()
+    public function images()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

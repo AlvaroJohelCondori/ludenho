@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
             'product_name' => 'required',
             'product_slug' => 'required|unique:products,product_slug',
             'product_status' => 'required|in:1,2',
-            'product_image' => 'required|image',
+            'product_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 
         if ($product) {

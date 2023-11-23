@@ -112,14 +112,20 @@
                             <div class="carousel-inner">
                                 @foreach ($products as $product)
                                     <div class="carousel-item{{ intval($loop->index) == 0 ? ' active' : '' }}">
-                                        <a href="{{ Storage::url($product->image->url) }}"
-                                            data-lightbox="{{ $product->id }}"
-                                            data-title="{{ $product->product_name }}">
-                                            <img src="{{ Storage::url($product->image->url) }}"
-                                                class="d-block w-100 img-fluid img-thumbnail"
-                                                style="width: 400px; height: 400px; object-fit: cover"
-                                                alt="Imagen Producto {{ $product->id }}">
-                                        </a>
+                                        <div class="row">
+                                            @foreach ($product->images as $image)
+                                                <div class="col">
+                                                    <a href="{{ Storage::url($image->url) }}"
+                                                        data-lightbox="{{ $product->id }}"
+                                                        data-title="{{ $product->product_name }}">
+                                                        <img src="{{ Storage::url($image->url) }}"
+                                                            class="d-block w-100 img-fluid img-thumbnail"
+                                                            style="width: 400px; height: 400px; object-fit: cover"
+                                                            alt="Imagen Producto {{ $product->id }}">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                         <div class="carousel-caption d-none d-md-block my-shadown">
                                             <h5 class="fw-bold">{{ $product->product_name }}</h5>
                                             <a href="{{ route('products.show', $product) }}"

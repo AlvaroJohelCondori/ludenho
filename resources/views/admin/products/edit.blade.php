@@ -94,8 +94,7 @@
                             ];
                         @endphp
                         <x-adminlte-text-editor name="product_extract" label="Extracto Producto" label-class="text-info"
-                            placeholder="Escriba el extracto..." :config="$config"
-                            value="{{ $product->product_extract }}" />
+                            placeholder="Escriba el extracto..." :config="$config" />
                     </div>
                 </div>
                 <div class="row">
@@ -107,33 +106,27 @@
                             ];
                         @endphp
                         <x-adminlte-text-editor name="product_body" label="Cuerpo Producto" label-class="text-info"
-                            placeholder="Escriba el cuerpo..." :config="$config" value="{{ $product->product_body }}" />
+                            placeholder="Escriba el cuerpo..." :config="$config" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        @php
-                            $config = [
-                                'allowedFileTypes' => ['image'],
-                                'browseOnZoneClick' => true,
-                                'theme' => 'explorer-fa5',
-                            ];
-                        @endphp
-                        <x-adminlte-input-file-krajee name="product_image" label="Seleccionar Fotos"
-                            data-msg-placeholder="Seleccione una imagen realacionado al producto..."
-                            label-class="text-primary" :config="$config" disable-feedback
-                            src="{{ $product->image->url ?? asset('img/insignia.png') }}" />
-                        @error('product_image')
+                        <x-adminlte-input-file-krajee id="product_images" name="product_images[]"
+                            data-msg-placeholder="Choose multiple files..." data-show-cancel="false" data-show-close="false"
+                            multiple />
+                        @error('product_images')
                             <small class="text-danger"><strong>{{ $message }}</strong></small>
                         @enderror
                     </div>
                     <div class="col">
-                        @if ($product->image)
-                            <div class="mt-2">
-                                <label class="text-primary">Imagen actual:</label>
-                                <img src="{{ Storage::url($product->image->url) }}" alt="Vista previa de la imagen"
-                                    style="max-width: 100px; max-height: 100px;">
-                            </div>
+                        @if ($product->images)
+                            @foreach ($product->images as $image)
+                                <div class="mt-2">
+                                    <label class="text-primary">Imagen actual:</label>
+                                    <img src="{{ Storage::url($image->url) }}" alt="Vista previa de la imagen"
+                                        style="max-width: 100px; max-height: 100px;">
+                                </div>
+                            @endforeach
                         @endif
                     </div>
                 </div>
@@ -169,7 +162,7 @@
         $(document).ready(function() {
             // Establecer el contenido del editor
             $('textarea[name="product_extract"]').summernote('code', {!! json_encode($product->product_extract) !!});
-            $('textarea[name="product_body"]').summernote('code', {!! json_encode($product->product_extract) !!});
+            $('textarea[name="product_body"]').summernote('code', {!! json_encode($product->product_body) !!});
         });
     </script>
 @stop

@@ -105,17 +105,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @php
-                            $config = [
-                                'allowedFileTypes' => ['image'],
-                                'browseOnZoneClick' => true,
-                                'theme' => 'explorer-fa5',
-                            ];
-                        @endphp
-                        <x-adminlte-input-file-krajee name="product_image" label="Seleccionar Fotos"
-                            data-msg-placeholder="Seleccione una imagen realacionado al producto..."
-                            label-class="text-primary" :config="$config" disable-feedback />
-                        @error('product_image')
+                        <x-adminlte-input-file-krajee id="product_images" name="product_images[]"
+                            data-msg-placeholder="Choose multiple files..." data-show-cancel="false" data-show-close="false"
+                            multiple />
+                        @error('product_images')
                             <small class="text-danger"><strong>{{ $message }}</strong></small>
                         @enderror
                     </div>

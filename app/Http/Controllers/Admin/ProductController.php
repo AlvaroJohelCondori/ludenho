@@ -39,12 +39,15 @@ class ProductController extends Controller
         //return Storage::put('products', $request->file('product_image'));
         $product = Product::create($request->all());
 
-        if ($request->file('product_image')) {
-            $url = Storage::put('products', $request->file('product_image'));
-            $product->image()->create([
-                'url' => $url,
-            ]);
+        if ($request->hasFile('product_images')) {
+            foreach ($request->file('product_images') as $image) {
+                $url = Storage::put('products', $image);
+                $product->images()->create([
+                    'url' => $url,
+                ]);
+            }
         }
+
         if ($request->materials) {
             $product->materials()->attach($request->materials);
         }
@@ -79,21 +82,30 @@ class ProductController extends Controller
     {
         $this->authorize('author', $product);
         //return Storage::put('products', $request->file('product_image'));
+
+        // Obtén las URLs de las imágenes antes de eliminarlas de la base de datos
+        $imageUrls = $product->images()->pluck('url')->toArray();
+
         $product->update($request->all());
 
-        if ($request->file('product_image')) {
-            $url = Storage::put('products', $request->file('product_image'));
-            if ($product->image) {
-                Storage::delete($product->image->url);
-                $product->image->update([
-                    'url' => $url
-                ]);
-            } else {
-                $product->image()->create([
-                    'url' => $url
+        if ($request->hasFile('product_images')) {
+            // Eliminar las imágenes existentes si las hay
+            $product->images()->delete();
+
+            // Eliminar los archivos físicos asociados a las imágenes eliminadas
+            foreach ($imageUrls as $imageUrl) {
+                Storage::delete($imageUrl);
+            }
+
+            // Subir y agregar las nuevas imágenes
+            foreach ($request->file('product_images') as $image) {
+                $url = Storage::put('products', $image);
+                $product->images()->create([
+                    'url' => $url,
                 ]);
             }
         }
+
         if ($request->materials) {
             $product->materials()->sync($request->materials);
         }
@@ -106,6 +118,14 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $this->authorize('author', $product);
+        if ($product->images) {
+            Storage::delete($product->images->url);
+        }
+
+        if ($product->images) {
+            $product->images->delete();
+        }
+
         $product->delete();
         return redirect()->route('admin.products.index')->with('delete', 'EL producto se elminó correctamente.');
     }
