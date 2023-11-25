@@ -13,7 +13,10 @@ class StartController extends Controller
     {
         $categories = Category::all();
 
-        $products = Product::all();
+        $products = Product::where('product_status', 2)
+            ->where('user_id', 1)
+            ->latest('id')
+            ->get();
 
         $start = Start::where('start_state', 2)->latest('id')->first();
 

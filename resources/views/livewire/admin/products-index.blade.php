@@ -14,6 +14,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Nombre Producto</th>
                             <th scope="col">Nombre Amigable</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Foto</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -25,6 +26,7 @@
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->product_name }}</td>
                                     <td>{{ $product->product_slug }}</td>
+                                    <td>{{ $product->product_status }}</td>
                                     <td>
                                         @if ($product->images)
                                             @foreach ($product->images as $image)

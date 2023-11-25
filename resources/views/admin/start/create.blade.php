@@ -32,6 +32,34 @@
                             </x-slot>
                         </x-adminlte-input>
                     </div>
+                    <div class="col">
+                        @php
+                            $config = [
+                                'extensions' => [
+                                    [
+                                        'name' => 'swatches',
+                                        'options' => [
+                                            'colors' => [
+                                                'black' => '#000000',
+                                                'gray' => '#888888',
+                                                'white' => '#ffffff',
+                                                'red' => '#ff0000',
+                                            ],
+                                            'namesAsValues' => true,
+                                        ],
+                                    ],
+                                ],
+                            ];
+                        @endphp
+                        <x-adminlte-input-color name="start_color" placeholder="Elija un color..." label="Seleccione Color"
+                            label-class="text-lightblue" :config="$config" value="#ffffff">
+                            <x-slot name="appendSlot">
+                                <div class="input-group-text">
+                                    <i class="fas fa-lg fa-brush"></i>
+                                </div>
+                            </x-slot>
+                        </x-adminlte-input-color>
+                    </div>
                     <div class="col-lg-2 col-md-2 col-sm-12">
                         <label class="text-info">Estado Portada</label>
                         <div class="form-group">
@@ -83,6 +111,7 @@
 
 @section('plugins.Summernote', true)
 @section('plugins.KrajeeFileinput', true)
+@section('plugins.BootstrapColorpicker', true)
 
 @section('js')
 @stop

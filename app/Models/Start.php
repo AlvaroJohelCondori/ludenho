@@ -12,6 +12,7 @@ class Start extends Model
     protected $fillable = [
         'start_title',
         'start_subtitle',
+        'start_color',
         'start_state',
     ];
 

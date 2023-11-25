@@ -15,10 +15,10 @@
 
 <body>
     <header>
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg fixed-top fs-5">
+        <div>
+            <nav class="navbar navbar-expand-lg fs-6">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white fw-bold" href="/">LUDEÑO</a>
+                    <a class="navbar-brand fw-bold" href="/">LUDEÑO</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -27,13 +27,13 @@
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section1">INICIO</a>
+                                <a class="nav-link fw-bold" href="#section1">INICIO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section2">CATÁLOGOS</a>
+                                <a class="nav-link fw-bold" href="#section2">CATÁLOGOS</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link text-white fw-bold dropdown-toggle" href="#" role="button"
+                                <a class="nav-link fw-bold dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     NUESTROS SERVICIOS
                                 </a>
@@ -48,18 +48,18 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section3">CONTÁCTANOS</a>
+                                <a class="nav-link fw-bold" href="#section3">CONTÁCTANOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section4">ACERCA DE NOSOTROS</a>
+                                <a class="nav-link fw-bold" href="#section4">ACERCA DE NOSOTROS</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="{{ route('login') }}">INICIAR SESIÓN</a>
+                                <a class="nav-link fw-bold" href="{{ route('login') }}">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="{{ route('register') }}">REGISTRARSE</a>
+                                <a class="nav-link fw-bold" href="{{ route('register') }}">REGISTRARSE</a>
                             </li>
                         </ul>
                     </div>
@@ -68,7 +68,40 @@
         </div>
     </header>
     <main>
-        <section id="section1" style="background-image: url('{{ Storage::url($start->image->url) }}');">
+        <section id="section1">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-5"
+                        style="display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        background-color: {{ $start->start_color }};">
+                        <div class="my-shadown">
+                            <h1 class="text-warning fw-bold">{{ $start->start_title }}</h1>
+                            <h2 class="text-white fw-bold" style="font-size: 3.5rem;">
+                                <p>{{ $start->start_subtitle }}</p>
+                            </h2>
+                            <a class="btn btn-info" href="#section2">Ver más</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 portada"
+                        style="background-image: url('{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}');">
+                        <div class="animate__animated animate__backInLeft"
+                            style="position: absolute; bottom: 0; right: 0;">
+                            <img src="{{ asset('img/insignia2.png') }}" alt="Imagen Redonda"
+                                class="img-fluid rounded-circle" width="150" height="150">
+                        </div>
+                        <div class="animate__animated animate__backInLeft"
+                            style="position: absolute; bottom: 0; center: 0;">
+                            <img src="{{ asset('img/logo2.png') }}" alt="Logo" class="img-fluid" width="500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{-- <section id="section1" style="background-image: url('{{ Storage::url($start->image->url) }}');">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9 col-md-12 col-sm-12">
@@ -95,19 +128,54 @@
                         width="300" height="300">
                 </div>
             </div>
-        </section>
-        <section id="section2" class="bg-light" style="height: 100vh; padding-top: 100px;">
+        </section> --}}
+        <section id="section2" class="bg-light" style="height: 100vh;">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <h2>Nuestros Trabajos</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam dolore minima rerum, voluptatem
-                            assumenda, deserunt explicabo debitis doloremque beatae maiores iste ullam atque eaque
-                            similique eligendi molestias enim non? Aliquam!
-                        </p>
+                {{-- <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row text-center">
+                            <div class="col">
+                                <figure class="figure">
+                                    <img src="{{ asset('img/desing.png') }}" width="100" height="100"
+                                        class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption fs-5">
+                                        Donde el diseño se encuentra con la innovación. Construimos fachadas flotantes y
+                                        carpintería en aluminio, melamina y vidrio templado con precisión y estilo
+                                        excepcionales. Cada proyecto es una expresión única de excelencia
+                                        arquitectónica.
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col">
+                                <figure class="figure">
+                                    <img src="{{ asset('img/construction.png') }}" width="100" height="100"
+                                        class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption fs-5">
+                                        Pioneros en la construcción de fachadas flotantes y carpintería en aluminio,
+                                        melamina y vidrio templado. Nuestra dedicación se refleja en cada estructura,
+                                        fusionando innovación y calidad con estilo excepcional.
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col">
+                                <figure class="figure">
+                                    <img src="{{ asset('img/quotations.png') }}" width="100" height="100"
+                                        class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption fs-5">
+                                        ¿Listo para dar vida a tu visión? Obtén una cotización personalizada con Ludeño
+                                        Ingeniería en Vidrio y Aluminio. Nuestro equipo está preparado para transformar
+                                        tus ideas en proyectos con presupuestos adaptados a tus necesidades.
+                                        ¡Contáctanos hoy para comenzar!
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
+                </div> --}}
+                <hr>
+                <div class="row">
+                    <h1>Nuestros Trabajos</h1>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($products as $product)
@@ -120,7 +188,9 @@
                                                         data-title="{{ $product->product_name }}">
                                                         <img src="{{ Storage::url($image->url) }}"
                                                             class="d-block w-100 img-fluid img-thumbnail"
-                                                            style="width: 400px; height: 400px; object-fit: cover"
+                                                            style="height: 600px; background-size: cover;
+                                                            background-position: center;
+                                                            background-repeat: no-repeat;"
                                                             alt="Imagen Producto {{ $product->id }}">
                                                     </a>
                                                 </div>
@@ -149,8 +219,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12">
                         <div id="carouselProducts2" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
@@ -263,7 +332,7 @@
                         </ul>
                         </p>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
                     <div class="col"><a href="#section1" class="btn btn-info btn-sm">Subir</a></div>
                     <div class="col"><a href="#section3" class="btn btn-info btn-sm">Bajar</a></div>

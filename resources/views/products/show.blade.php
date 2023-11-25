@@ -91,8 +91,10 @@
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="{{ Storage::url($product->image->url) }}" class="img-fluid rounded-start"
-                                        alt="...">
+                                    @foreach ($product->images as $image)
+                                        <img src="{{ Storage::url($image->url) }}" class="img-fluid rounded-start"
+                                            alt="...">
+                                    @endforeach
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -116,8 +118,10 @@
                             <div class="card">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <img src="{{ Storage::url($similar->image->url) }}"
-                                            class="img-fluid rounded-start" alt="...">
+                                        @foreach ($similar->images as $image)
+                                            <img src="{{ Storage::url($image->url) }}" class="img-fluid rounded-start"
+                                                alt="...">
+                                        @endforeach
                                     </div>
                                     <div class="col-lg-8 col-md-8 col-sm-12">
                                         <div class="card-body">

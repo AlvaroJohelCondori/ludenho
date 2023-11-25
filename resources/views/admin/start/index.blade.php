@@ -17,6 +17,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Título</th>
                         <th scope="col">Subtítulo</th>
+                        <th scope="col">Color</th>
                         <th scope="col">Portada</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
@@ -29,6 +30,16 @@
                                 <td>{{ $start->id }}</td>
                                 <td>{{ $start->start_title }}</td>
                                 <td>{{ $start->start_subtitle }}</td>
+                                <td>
+                                    @if ($start->start_color)
+                                        <span
+                                            style="border-radius: 3px; border-style: solid; border-color: black; background-color: {{ $start->start_color }};">
+                                            Color de Fondo
+                                        </span>
+                                    @else
+                                        <span>Ningún color de fondo asignado.</span>
+                                    @endif
+                                </td>
                                 <td>
                                     @if ($start->image)
                                         <a href="{{ Storage::url($start->image->url) }}"

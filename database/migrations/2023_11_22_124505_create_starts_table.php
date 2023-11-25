@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('starts', function (Blueprint $table) {
             $table->id();
-            $table->string('start_title')->unique();
-            $table->string('start_subtitle');
+            $table->string('start_title');
+            $table->string('start_subtitle')->unique();
+            $table->string('start_color')->nullable();
             $table->enum('start_state', [1, 2])->default(1);
             $table->timestamps();
         });

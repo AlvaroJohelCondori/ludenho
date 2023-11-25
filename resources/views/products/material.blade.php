@@ -59,9 +59,11 @@
                 @foreach ($products as $product)
                     <div class="card mb-3">
                         <figure style="width: 100%; height: 250px;">
-                            <img src="{{ Storage::url($product->image->url) }}"
-                                style="width: 100%; height: 100%; object-fit: cover;" class="card-img-top"
-                                alt="...">
+                            @foreach ($product->images as $image)
+                                <img src="{{ Storage::url($image->url) }}"
+                                    style="width: 100%; height: 100%; object-fit: cover;" class="card-img-top"
+                                    alt="...">
+                            @endforeach
                         </figure>
                         <div class="card-body">
                             <h5 class="card-title">

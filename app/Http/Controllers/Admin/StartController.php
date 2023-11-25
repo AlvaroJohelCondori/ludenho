@@ -33,8 +33,9 @@ class StartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'start_title' => 'required|unique:starts,start_title',
-            'start_subtitle' => 'required',
+            'start_title' => 'required',
+            'start_subtitle' => 'required|unique:starts,start_subtitle',
+            'start_color' => 'required',
             'start_state' => 'required',
             'start_image' => 'required',
         ]);
@@ -72,8 +73,9 @@ class StartController extends Controller
     public function update(Request $request, Start $start)
     {
         $request->validate([
-            'start_title' => "required|unique:starts,start_title,$start->id",
-            'start_subtitle' => 'required',
+            'start_title' => 'required',
+            'start_subtitle' => "required|unique:starts,start_subtitle,$start->id",
+            'start_color' => 'required',
             'start_state' => 'required',
             'start_image' => 'required',
         ]);
