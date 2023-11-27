@@ -26,7 +26,7 @@ class ProductController extends Controller
             ->where('product_status', 2)
             ->where('id', '!=', $product->id)
             ->latest('id')
-            ->take(4)
+            ->take(3)
             ->get();
 
         return view('products.show', compact('product', 'similars'));

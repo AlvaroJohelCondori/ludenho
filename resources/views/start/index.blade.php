@@ -78,20 +78,26 @@
                         align-items: center;
                         text-align: center;
                         background-color: {{ $start->start_color }};">
-                        <div class="my-shadown">
+                        <div>
                             <h1 class="text-warning fw-bold">{{ $start->start_title }}</h1>
-                            <h2 class="text-white fw-bold" style="font-size: 3.5rem;">
+                            <h2 class="fw-bold" style="font-size: 3.5rem;">
                                 <p>{{ $start->start_subtitle }}</p>
                             </h2>
-                            <a class="btn btn-info" href="#section2">Ver más</a>
+                            <a class="btn btn-outline-info btn-block btn-flat" href="#section2">
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-7 portada"
-                        style="background-image: url('{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}');">
+                        style="background-image: url('{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}');
+                        background-position: right 100px;
+                        background-origin: content-box;
+                        padding-right: 100px;
+                        background-color: {{ $start->start_color }};">
                         <div class="animate__animated animate__backInLeft"
-                            style="position: absolute; bottom: 0; right: 0;">
-                            <img src="{{ asset('img/insignia2.png') }}" alt="Imagen Redonda"
-                                class="img-fluid rounded-circle" width="150" height="150">
+                            style="position: absolute; bottom: 0; right: 100px;">
+                            <img src="{{ asset('img/insignia3.png') }}" alt="Imagen Redonda"
+                                class="img-fluid rounded-circle" width="200" height="200">
                         </div>
                         <div class="animate__animated animate__backInLeft"
                             style="position: absolute; bottom: 0; center: 0;">
@@ -188,16 +194,14 @@
                                                         data-title="{{ $product->product_name }}">
                                                         <img src="{{ Storage::url($image->url) }}"
                                                             class="d-block w-100 img-fluid img-thumbnail"
-                                                            style="height: 600px; background-size: cover;
-                                                            background-position: center;
-                                                            background-repeat: no-repeat;"
+                                                            style="height: 500px; object-fit: cover;"
                                                             alt="Imagen Producto {{ $product->id }}">
                                                     </a>
                                                 </div>
                                             @endforeach
                                         </div>
                                         <div class="carousel-caption d-none d-md-block my-shadown">
-                                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
+                                            <h3 class="fw-bold">{{ $product->product_name }}</h3>
                                             <a href="{{ route('products.show', $product) }}"
                                                 class="btn btn-sm btn-info">
                                                 Ver Producto

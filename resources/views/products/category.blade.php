@@ -16,9 +16,9 @@
 <body>
     <header>
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg fixed-top">
+            <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white fw-bold" href="/">LUDEÑO</a>
+                    <a class="navbar-brand fw-bold" href="/">LUDEÑO</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -27,10 +27,10 @@
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="/">INICIO</a>
+                                <a class="nav-link fw-bold" href="/">INICIO</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section2">CATÁLOGOS</a>
+                                <a class="nav-link fw-bold" href="#section2">CATÁLOGOS</a>
                             </li>
                             {{-- <li class="nav-item dropdown">
                                 <a class="nav-link text-white fw-bold dropdown-toggle" href="#" role="button"
@@ -48,18 +48,18 @@
                                 </ul>
                             </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section3">CONTÁCTANOS</a>
+                                <a class="nav-link fw-bold" href="#section3">CONTÁCTANOS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="#section4">ACERCA DE NOSOTROS</a>
+                                <a class="nav-link fw-bold" href="#section4">ACERCA DE NOSOTROS</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="{{ route('login') }}">INICIAR SESIÓN</a>
+                                <a class="nav-link fw-bold" href="{{ route('login') }}">INICIAR SESIÓN</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white fw-bold" href="{{ route('register') }}">REGISTRARSE</a>
+                                <a class="nav-link fw-bold" href="{{ route('register') }}">REGISTRARSE</a>
                             </li>
                         </ul>
                     </div>
@@ -68,17 +68,24 @@
         </div>
     </header>
     <main>
-        <section class="bg-light" style="padding-top: 100px;">
+        <section class="bg-light">
             <div class="container">
                 <h1>Categoría: {{ $category->category_name }}</h1>
                 @foreach ($products as $product)
                     <div class="card mb-3">
-                        <figure style="width: 100%; height: 250px;">
-                            @foreach ($product->images as $image)
-                                <img src="{{ Storage::url($image->url) }}"
-                                    style="width: 100%; height: 100%; object-fit: cover;" class="card-img-top"
-                                    alt="...">
-                            @endforeach
+                        <figure class="figure">
+                            <div class="row">
+                                @foreach ($product->images as $image)
+                                    <div class="col">
+                                        <a href="{{ Storage::url($image->url) }}" data-lightbox="{{ $product->id }}"
+                                            data-title="{{ $product->product_name }}">
+                                            <img src="{{ Storage::url($image->url) }}"
+                                                style="height: 300px; object-fit: cover;" class="card-img-top"
+                                                alt="Imagen {{ $product->id }}">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
                         </figure>
                         <div class="card-body">
                             <h5 class="card-title">
