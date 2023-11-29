@@ -80,7 +80,7 @@
                         background-color: {{ $start->start_color }};">
                         <div>
                             <h1 class="text-warning fw-bold">{{ $start->start_title }}</h1>
-                            <h2 class="fw-bold" style="font-size: 3.5rem;">
+                            <h2 class="fw-bold" style="font-size: 4.5rem;">
                                 <p>{{ $start->start_subtitle }}</p>
                             </h2>
                             <a class="btn btn-outline-info btn-block btn-flat" href="#section2">
@@ -90,14 +90,14 @@
                     </div>
                     <div class="col-lg-7 portada"
                         style="background-image: url('{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}');
-                        background-position: right 100px;
+                        background-position: right 60px;
                         background-origin: content-box;
-                        padding-right: 100px;
+                        padding-right: 60px;
                         background-color: {{ $start->start_color }};">
                         <div class="animate__animated animate__backInLeft"
-                            style="position: absolute; bottom: 0; right: 100px;">
+                            style="position: absolute; bottom: 0; right: 60px;">
                             <img src="{{ asset('img/insignia3.png') }}" alt="Imagen Redonda"
-                                class="img-fluid rounded-circle" width="200" height="200">
+                                class="img-fluid rounded-circle" width="170" height="170">
                         </div>
                         <div class="animate__animated animate__backInLeft"
                             style="position: absolute; bottom: 0; center: 0;">
@@ -136,57 +136,16 @@
             </div>
         </section> --}}
         <section id="section2" class="bg-light" style="height: 100vh;">
-            <div class="container">
-                {{-- <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="row text-center">
-                            <div class="col">
-                                <figure class="figure">
-                                    <img src="{{ asset('img/desing.png') }}" width="100" height="100"
-                                        class="figure-img img-fluid rounded" alt="...">
-                                    <figcaption class="figure-caption fs-5">
-                                        Donde el diseño se encuentra con la innovación. Construimos fachadas flotantes y
-                                        carpintería en aluminio, melamina y vidrio templado con precisión y estilo
-                                        excepcionales. Cada proyecto es una expresión única de excelencia
-                                        arquitectónica.
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col">
-                                <figure class="figure">
-                                    <img src="{{ asset('img/construction.png') }}" width="100" height="100"
-                                        class="figure-img img-fluid rounded" alt="...">
-                                    <figcaption class="figure-caption fs-5">
-                                        Pioneros en la construcción de fachadas flotantes y carpintería en aluminio,
-                                        melamina y vidrio templado. Nuestra dedicación se refleja en cada estructura,
-                                        fusionando innovación y calidad con estilo excepcional.
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col">
-                                <figure class="figure">
-                                    <img src="{{ asset('img/quotations.png') }}" width="100" height="100"
-                                        class="figure-img img-fluid rounded" alt="...">
-                                    <figcaption class="figure-caption fs-5">
-                                        ¿Listo para dar vida a tu visión? Obtén una cotización personalizada con Ludeño
-                                        Ingeniería en Vidrio y Aluminio. Nuestro equipo está preparado para transformar
-                                        tus ideas en proyectos con presupuestos adaptados a tus necesidades.
-                                        ¡Contáctanos hoy para comenzar!
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
+            <div class="container-fluid" style="padding-right: 60px; padding-left: 60px;">
+                <h1 style="font-size: 3rem;">Nuestros Trabajos</h1>
                 <hr>
-                <div class="row">
-                    <h1>Nuestros Trabajos</h1>
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="row g-5">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($products as $product)
                                     <div class="carousel-item{{ intval($loop->index) == 0 ? ' active' : '' }}">
-                                        <div class="row">
+                                        <div class="row g-3">
                                             @foreach ($product->images as $image)
                                                 <div class="col">
                                                     <a href="{{ Storage::url($image->url) }}"
@@ -201,11 +160,50 @@
                                             @endforeach
                                         </div>
                                         <div class="carousel-caption d-none d-md-block my-shadown">
-                                            <h3 class="fw-bold">{{ $product->product_name }}</h3>
-                                            <a href="{{ route('products.show', $product) }}"
-                                                class="btn btn-sm btn-info">
-                                                Ver Producto
-                                            </a>
+                                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary openModal"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal-{{ $product->id }}">
+                                                Vista Previa
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal-{{ $product->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel-{{ $product->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5"
+                                                        id="exampleModalLabel-{{ $product->id }}">
+                                                        {{ $product->product_name }}
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {!! $product->product_extract !!}
+                                                    <div class="row">
+                                                        @foreach ($product->images as $image)
+                                                            <div class="col">
+                                                                <img src="{{ Storage::url($image->url) }}"
+                                                                    class="d-block w-100 img-fluid img-thumbnail"
+                                                                    style="height: 500px; object-fit: cover"
+                                                                    alt="Imagen Producto {{ $product->id }}">
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    <a href="{{ route('products.show', $product) }}"
+                                                        class="btn btn-sm btn-success">
+                                                        Ver Detalles
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -220,6 +218,92 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach ($products as $product)
+                                    <div class="carousel-item{{ intval($loop->index) == 0 ? ' active' : '' }}">
+                                        <div class="row g-3">
+                                            @foreach ($product->images as $image)
+                                                <div class="col">
+                                                    <a href="{{ Storage::url($image->url) }}"
+                                                        data-lightbox="1-{{ $product->id }}"
+                                                        data-title="1-{{ $product->product_name }}">
+                                                        <img src="{{ Storage::url($image->url) }}"
+                                                            class="d-block w-100 img-fluid img-thumbnail"
+                                                            style="height: 500px; object-fit: cover;"
+                                                            alt="Imagen Producto {{ $product->id }}">
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block my-shadown">
+                                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
+                                            <a href="{{ route('products.show', $product) }}"
+                                                class="btn btn-sm btn-info">
+                                                Ver Detalles
+                                            </a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample1"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample1"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row text-center">
+                            <div class="col">
+                                <figure class="figure">
+                                    <img src="{{ asset('img/quotations.png') }}" width="100" height="100"
+                                        class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption fs-5">
+                                        <h3>Cotizaciones</h3>
+                                        ¿Listo para dar vida a tu visión? Obtén una cotización personalizada con Ludeño
+                                        Ingeniería en Vidrio y Aluminio. Nuestro equipo está preparado para transformar
+                                        tus ideas en proyectos con presupuestos adaptados a tus necesidades.
+                                        ¡Contáctanos hoy para comenzar!
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col">
+                                <figure class="figure">
+                                    <img src="{{ asset('img/desing.png') }}" width="100" height="100"
+                                        class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption fs-5">
+                                        <h3>Diseño</h3>
+                                        Donde el diseño se encuentra con la innovación. Construimos fachadas flotantes y
+                                        carpintería en aluminio, melamina y vidrio templado con precisión y estilo
+                                        excepcionales. Cada proyecto es una expresión única de excelencia
+                                        arquitectónica.
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col">
+                                <figure class="figure">
+                                    <img src="{{ asset('img/construction.png') }}" width="100" height="100"
+                                        class="figure-img img-fluid rounded" alt="...">
+                                    <figcaption class="figure-caption fs-5">
+                                        <h3>Construcción</h3>
+                                        Pioneros en la construcción de fachadas flotantes y carpintería en aluminio,
+                                        melamina y vidrio templado. Nuestra dedicación se refleja en cada estructura,
+                                        fusionando innovación y calidad con estilo excepcional.
+                                    </figcaption>
+                                </figure>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -339,7 +423,7 @@
                 </div> --}}
                 <div class="row">
                     <div class="col"><a href="#section1" class="btn btn-info btn-sm">Subir</a></div>
-                    <div class="col"><a href="#section3" class="btn btn-info btn-sm">Bajar</a></div>
+                    <div class="col"><a href="#section3" class="btn btn-info btn-sm float-end">Bajar</a></div>
                 </div>
             </div>
         </section>
@@ -489,6 +573,19 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+        $(document).ready(function() {
+            // Al pasar el mouse por el botón, abrir el modal
+            $('.openModal').hover(function() {
+                var modalId = $(this).data('bs-target');
+                $(modalId).modal('show');
+            });
+
+            // Al salir del botón, cerrar el modal
+            $('.btn-primary').mouseleave(function() {
+                var modalId = $(this).data('bs-target');
+                $(modalId).modal('hide');
+            });
+        });
     </script>
 </body>
 

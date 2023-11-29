@@ -308,6 +308,12 @@ return [
             'icon'        => 'fas fa-fw fa-home',
             'active' => ['admin/starts*'],
         ],
+        [
+            'text'        => 'Spots',
+            'route'         => 'admin.spots.index',
+            'icon'        => 'fas fa-fw fa-tags',
+            'active' => ['admin/spots*'],
+        ],
         ['header' => 'ADMINISTRADOR'],
         [
             'text' => 'Categorías',
