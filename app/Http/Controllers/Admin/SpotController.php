@@ -75,24 +75,31 @@ class SpotController extends Controller
     public function update(Request $request, Spot $spot)
     {
         $request->validate([
-            'spot_title' => 'required|unique:spots,spot_title',
+            'spot_title' => "required|unique:spots,spot_title,$spot->id",
             'spot_description' => 'required',
-            'spot_video' => 'required|mimes:mp4,avi,mov,wmv|max:156160MB',
             'spot_color' => 'required',
         ]);
 
-        $spot_video = null;
-
         if ($request->hasFile('spot_video')) {
-            $spot_video = Storage::put('spots', $request->file('spot_video'));
+            $request->validate([
+                'spot_video' => 'file|mimes:mp4,avi,mov,wmv|max:156928',
+            ]);
+
+            Storage::delete($spot->spot_video);
+
+            $spot_video = $request->file('spot_video')->store('spots');
+
+            $spot->update([
+                'spot_video' => $spot_video,
+                'spot_title' => $request->input('spot_title'),
+                'spot_description' => $request->input('spot_description'),
+                'spot_color' => $request->input('spot_color'),
+            ]);
+        } else {
+            $spot->update($request->except('spot_video'));
         }
 
-        $data = $request->all();
-        $data['spot_video'] = $spot_video;
-
-        Spot::create($data);
-
-        return redirect()->route('admin.spots.index')->with('create', 'EL spot se creó correctamente.');
+        return redirect()->route('admin.spots.index')->with('create', 'EL spot se actualizó correctamente correctamente.');
     }
 
     /**
@@ -100,6 +107,16 @@ class SpotController extends Controller
      */
     public function destroy(Spot $spot)
     {
-        //
+        if ($spot->spot_video) {
+            if (Storage::delete($spot->spot_video)) {
+                $spot->delete();
+            } else {
+                return redirect()->route('admin.spots.index')->with('error', 'Error al eliminar el archivo.');
+            }
+        } else {
+            $spot->delete();
+        }
+
+        return redirect()->route('admin.spots.index')->with('delete', 'EL spot se elminó correctamente.');
     }
 }

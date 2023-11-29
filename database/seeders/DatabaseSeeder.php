@@ -31,6 +31,6 @@ class DatabaseSeeder extends Seeder
         Material::factory(10)->create();
         $this->call(ProductSeeder::class);
         Start::factory(5)->create();
-        Spot::factory(10)->create();
+        //Spot::factory(10)->create();
     }
 }

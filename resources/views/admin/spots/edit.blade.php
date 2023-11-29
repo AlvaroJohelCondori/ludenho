@@ -80,6 +80,11 @@
                             <small class="text-danger"><strong>{{ $message }}</strong></small>
                         @enderror
                     </div>
+                    <div class="col">
+                        <video width="100%" height="auto" controls>
+                            <source src="{{ Storage::url($spot->spot_video) }}" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col"><a href="{{ route('admin.spots.index') }}"

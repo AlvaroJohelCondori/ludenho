@@ -68,7 +68,7 @@
         </div>
     </header>
     <main>
-        <section id="section1">
+        <section class="section active" id="section1">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-5"
@@ -80,7 +80,7 @@
                         background-color: {{ $start->start_color }};">
                         <div>
                             <h1 class="text-warning fw-bold">{{ $start->start_title }}</h1>
-                            <h2 class="fw-bold" style="font-size: 4.5rem;">
+                            <h2 class="fw-bold" style="font-size: 3.5rem;">
                                 <p>{{ $start->start_subtitle }}</p>
                             </h2>
                             <a class="btn btn-outline-info btn-block btn-flat" href="#section2">
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </section> --}}
-        <section id="section2" class="bg-light" style="height: 100vh;">
+        <section class="section" id="section2" class="bg-light" style="height: 100vh;">
             <div class="container-fluid" style="padding-right: 60px; padding-left: 60px;">
                 <h1 style="font-size: 3rem;">Nuestros Trabajos</h1>
                 <hr>
@@ -153,7 +153,7 @@
                                                         data-title="{{ $product->product_name }}">
                                                         <img src="{{ Storage::url($image->url) }}"
                                                             class="d-block w-100 img-fluid img-thumbnail"
-                                                            style="height: 500px; object-fit: cover;"
+                                                            style="height: 700px; object-fit: cover;"
                                                             alt="Imagen Producto {{ $product->id }}">
                                                     </a>
                                                 </div>
@@ -162,7 +162,7 @@
                                         <div class="carousel-caption d-none d-md-block my-shadown">
                                             <h5 class="fw-bold">{{ $product->product_name }}</h5>
                                             <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary openModal"
+                                            <button type="button" class="btn btn-sm btn-info openModal"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal-{{ $product->id }}">
                                                 Vista Previa
@@ -183,13 +183,12 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {!! $product->product_extract !!}
+                                                    {!! $product->product_body !!}
                                                     <div class="row">
                                                         @foreach ($product->images as $image)
                                                             <div class="col">
                                                                 <img src="{{ Storage::url($image->url) }}"
                                                                     class="d-block w-100 img-fluid img-thumbnail"
-                                                                    style="height: 500px; object-fit: cover"
                                                                     alt="Imagen Producto {{ $product->id }}">
                                                             </div>
                                                         @endforeach
@@ -233,7 +232,7 @@
                                                         data-title="1-{{ $product->product_name }}">
                                                         <img src="{{ Storage::url($image->url) }}"
                                                             class="d-block w-100 img-fluid img-thumbnail"
-                                                            style="height: 500px; object-fit: cover;"
+                                                            style="height: 700px; object-fit: cover;"
                                                             alt="Imagen Producto {{ $product->id }}">
                                                     </a>
                                                 </div>
@@ -241,10 +240,48 @@
                                         </div>
                                         <div class="carousel-caption d-none d-md-block my-shadown">
                                             <h5 class="fw-bold">{{ $product->product_name }}</h5>
-                                            <a href="{{ route('products.show', $product) }}"
-                                                class="btn btn-sm btn-info">
-                                                Ver Detalles
-                                            </a>
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-sm btn-info openModal"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal1-{{ $product->id }}">
+                                                Vista Previa
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal1-{{ $product->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel1-{{ $product->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5"
+                                                        id="exampleModalLabel1-{{ $product->id }}">
+                                                        {{ $product->product_name }}
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {!! $product->product_body !!}
+                                                    <div class="row">
+                                                        @foreach ($product->images as $image)
+                                                            <div class="col">
+                                                                <img src="{{ Storage::url($image->url) }}"
+                                                                    class="d-block w-100 img-fluid img-thumbnail"
+                                                                    alt="Imagen Producto {{ $product->id }}">
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    <a href="{{ route('products.show', $product) }}"
+                                                        class="btn btn-sm btn-success">
+                                                        Ver Detalles
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
@@ -263,7 +300,7 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="row text-center">
                             <div class="col">
@@ -306,7 +343,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div class="row">
                     <div class="col-lg-8 col-md-8 col-sm-12">
                         <div id="carouselProducts2" class="carousel slide" data-bs-ride="carousel">
@@ -422,32 +459,105 @@
                     </div>
                 </div> --}}
                 <div class="row">
-                    <div class="col"><a href="#section1" class="btn btn-info btn-sm">Subir</a></div>
-                    <div class="col"><a href="#section3" class="btn btn-info btn-sm float-end">Bajar</a></div>
+                    <div class="col">
+                        <a class="btn btn-outline-info" href="#section1">
+                            <i class="fas fa-chevron-up"></i>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-outline-info float-end" href="#section3">
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
-        <section id="section3" class="bg-light" style="height: 100vh; padding-top: 128px;">
-            <div class="container text-center text-md-left">
+        <section class="section" id="section3" class="bg-light" style="height: 100vh;">
+            <div class="container-fluid text-center" style="padding-left: 60px; padding-right: 60px;">
                 <div class="row">
                     <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-4 col-sm-12">
                                 <img src="{{ asset('vendor/adminlte/dist/img/logo-ludeno.png') }}"
                                     class="img-fluid rounded-start" alt="...">
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-lg-10 col-md-8 col-sm-12">
                                 <div class="card-body">
-                                    <h5 class="card-title text-warning mb-4">FACHADAS FLOTANTES</h5>
-                                    <p class="card-text text-secondary">
-                                        Somos una empresa altamente competitiva comprometidos al 100% con la
-                                        satisfacción de nuestros clientes.
+                                    <h5 class="card-title text-warning mb-4 fs-1">CONTÁCTANOS</h5>
+                                    <hr>
+                                    <h5 class="card-title text-info mb-4" style="font-size: 4rem;">COTIZACIONES
+                                        GRATUITAS</h5>
+                                    <p class="card-text text-secondary fs-4">
+                                        Envía un mensaje a cualquiera de la redes de tu preferencia...
                                     </p>
-                                    <p class="card-text text-secondary">
-                                        14 años aportando al creciemiento y desarrollo del país.
-                                    </p>
-                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
-                                            ago</small></p>
+                                    <h5 class="card-title text-secondary mb-4 fs-2">REDES SOCIALES</h5>
+                                    <div class="row">
+                                        <div class="col">
+                                            <figure class="figure">
+                                                <img src="{{ asset('img/facebook.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="#"
+                                                        class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-facebook"></i> Facebook
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col">
+                                            <figure class="figure">
+                                                <img src="{{ asset('img/youtube.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="#"
+                                                        class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-youtube"></i> YouTube
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col">
+                                            <figure class="figure">
+                                                <img src="{{ asset('img/tiktok.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="#"
+                                                        class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-tiktok"></i> TikTok
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col">
+                                            <figure class="figure">
+                                                <img src="{{ asset('img/instagram.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="#"
+                                                        class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-instagram"></i> Instagram
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col">
+                                            <figure class="figure">
+                                                <img src="{{ asset('img/whatsapp.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="https://wa.me/+59170546730" target="_blank"
+                                                        class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -456,18 +566,18 @@
                 <div class="row text-center text-md-left">
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mx-auto mt-3">
                         <div class="card mb-3">
-                            <div class="row g-0">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <img src="{{ asset('img/ubication.png') }}" class="img-fluid rounded-start"
                                         alt="...">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h5 class="card-title text-info mb-3">Oficina Central</h5>
-                                        <p class="card-text text-secondary">El Alto, Zona Villa Dolores</p>
-                                        <p class="card-text text-secondary">Av. Antofagasta Esq. Calle 10.</p>
+                                        <h1 class="card-title text-info mb-3">Oficina Central</h1>
+                                        <p class="card-text text-secondary fs-4">El Alto, Zona Villa Dolores</p>
+                                        <p class="card-text text-secondary fs-4">Av. Antofagasta Esq. Calle 10.</p>
                                         <p class="card-text">
-                                            <small class="text-body-secondary">Escanear el código para abrir la
+                                            <small class="text-body-secondary fs-5">Escanear el código para abrir la
                                                 ubucación.</small>
                                         </p>
                                     </div>
@@ -476,39 +586,18 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mx-auto mt-3">
-                        <h5 class="text-uppercase mb-4 font-weight-bold text-info">Nuestras Redes Sociales</h5>
-                        <hr class="mb-4">
-                        <p>
-                            <a href="#"
-                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                <i class="fab fa-facebook"></i> Facebook
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#"
-                                class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                <i class="fab fa-youtube"></i> YouTube
-                            </a>
-                        </p>
-                        <p>
-                            <a href="#"
-                                class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                <i class="fab fa-tiktok"></i> TikTok
-                            </a>
-                        </p>
-                        <p>
-                            <a href="https://wa.me/+59170546730" target="_blank"
-                                class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                <i class="fab fa-whatsapp"></i> WhatsApp
-                            </a>
-                        </p>
+                        <div>
+                            <!-- Reemplaza 'VIDEO_ID' con el ID único de tu video de YouTube -->
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/i1kTBcr6y0c"
+                                frameborder="0" allowfullscreen></iframe>
+                        </div>
                         <a href="#section2" class="btn btn-info btn-sm">Subir</a>
                         <a href="#section4" class="btn btn-info btn-sm">Bajar</a>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="section4" class="bg-light" style="height: 100vh; padding-top: 128px;">
+        <section class="section" id="section4" class="bg-light" style="height: 100vh; padding-top: 128px;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -531,7 +620,7 @@
         </section>
     </main>
     <footer>
-        <section id="section5" class="bg-light text-dark">
+        <section class="section" id="section5" class="bg-light text-dark">
             <div class="container text-center text-md-left">
                 <div class="row">
                     <div class="col">
@@ -586,6 +675,40 @@
                 $(modalId).modal('hide');
             });
         });
+
+        /*$(document).ready(function() {
+            // Detecta el evento de scroll
+            $(window).on('wheel', function(e) {
+                // Comprueba la dirección del scroll
+                if (e.originalEvent.deltaY > 0) {
+                    // Scroll hacia abajo
+                    scrollToSection('next');
+                } else {
+                    // Scroll hacia arriba
+                    scrollToSection('prev');
+                }
+            });
+
+            // Función para hacer scroll a la siguiente o anterior sección
+            function scrollToSection(direction) {
+                var currentSection = $('section.active');
+                var targetSection;
+
+                if (direction === 'next') {
+                    targetSection = currentSection.next('section');
+                } else {
+                    targetSection = currentSection.prev('section');
+                }
+
+                if (targetSection.length) {
+                    $('html, body').animate({
+                        scrollTop: targetSection.offset().top
+                    }, 1000); // Ajusta la duración de la animación según tus preferencias
+                    currentSection.removeClass('active');
+                    targetSection.addClass('active');
+                }
+            }
+        });*/
     </script>
 </body>
 
