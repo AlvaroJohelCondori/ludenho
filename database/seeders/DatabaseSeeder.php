@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Address;
 use App\Models\Category;
+use App\Models\Description;
 use App\Models\Material;
 use App\Models\Spot;
 use App\Models\Start;
@@ -32,5 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSeeder::class);
         Start::factory(5)->create();
         //Spot::factory(10)->create();
+        Address::factory(1)->create();
+        Description::factory(1)->create();
     }
 }

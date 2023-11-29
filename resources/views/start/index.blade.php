@@ -16,9 +16,11 @@
 <body>
     <header>
         <div>
-            <nav class="navbar navbar-expand-lg fs-6">
-                <div class="container-fluid">
-                    <a class="navbar-brand fw-bold" href="/">LUDEÑO</a>
+            <nav class="navbar navbar-expand-lg fs-4 fixed-top bg-primary">
+                <div class="container" style="padding-left: 60px; padding-right: 50px;">
+                    <a class="navbar-brand fw-bold fs-2 text-white" href="/">
+                        <img src="{{ asset('img/logo2.png') }}" alt="" height="60">
+                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -26,14 +28,14 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold" href="#section1">INICIO</a>
+                            <li class="nav-item ms-5">
+                                <a class="nav-link fw-bold text-white" href="#section1">INICIO</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold" href="#section2">CATÁLOGOS</a>
+                            <li class="nav-item ms-5">
+                                <a class="nav-link fw-bold text-white" href="#section2">SERVICIOS</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link fw-bold dropdown-toggle" href="#" role="button"
+                            {{-- <li class="nav-item ms-5 dropdown">
+                                <a class="nav-link fw-bold text-white dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     NUESTROS SERVICIOS
                                 </a>
@@ -46,20 +48,9 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold" href="#section3">CONTÁCTANOS</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold" href="#section4">ACERCA DE NOSOTROS</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold" href="{{ route('login') }}">INICIAR SESIÓN</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fw-bold" href="{{ route('register') }}">REGISTRARSE</a>
+                            </li> --}}
+                            <li class="nav-item ms-5">
+                                <a class="nav-link fw-bold text-white" href="#section3">CONTACTOS</a>
                             </li>
                         </ul>
                     </div>
@@ -68,7 +59,7 @@
         </div>
     </header>
     <main>
-        <section class="section active" id="section1">
+        <section class="section active" id="section1" style="padding-top: 50px;">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-5"
@@ -135,9 +126,16 @@
                 </div>
             </div>
         </section> --}}
-        <section class="section" id="section2" class="bg-light" style="height: 100vh;">
+        <section class="section" id="section2" class="bg-light" style="height: 100vh; padding-top: 90px;">
             <div class="container-fluid" style="padding-right: 60px; padding-left: 60px;">
-                <h1 style="font-size: 3rem;">Nuestros Trabajos</h1>
+                <div class="row">
+                    <div class="d-block">
+                        <h1 class="d-inline text-secondary fw-bold" style="font-size: 3rem;">PROYECTOS REALIZADOS</h1>
+                        <p class="card-text text-secondary fs-4 d-inline">
+                            Para ver más detalles haz click en cualquiera de las imágenes...
+                        </p>
+                    </div>
+                </div>
                 <hr>
                 <div class="row g-5">
                     <div class="col-lg-6 col-md-12 col-sm-12">
@@ -153,20 +151,23 @@
                                                         data-title="{{ $product->product_name }}">
                                                         <img src="{{ Storage::url($image->url) }}"
                                                             class="d-block w-100 img-fluid img-thumbnail"
-                                                            style="height: 700px; object-fit: cover;"
+                                                            style="height: 600px; object-fit: cover;"
                                                             alt="Imagen Producto {{ $product->id }}">
                                                     </a>
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="carousel-caption d-none d-md-block my-shadown">
-                                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-info openModal"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal-{{ $product->id }}">
-                                                Vista Previa
-                                            </button>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    {!! $product->product_extract !!}
+                                                    <button type="button" class="btn btn-sm btn-info openModal"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal-{{ $product->id }}">
+                                                        Vista Previa
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Modal -->
@@ -187,9 +188,13 @@
                                                     <div class="row">
                                                         @foreach ($product->images as $image)
                                                             <div class="col">
-                                                                <img src="{{ Storage::url($image->url) }}"
-                                                                    class="d-block w-100 img-fluid img-thumbnail"
-                                                                    alt="Imagen Producto {{ $product->id }}">
+                                                                <a href="{{ Storage::url($image->url) }}"
+                                                                    data-lightbox="{{ $product->id }}"
+                                                                    data-title="{{ $product->product_name }}">
+                                                                    <img src="{{ Storage::url($image->url) }}"
+                                                                        class="d-block w-100 img-fluid img-thumbnail"
+                                                                        alt="Imagen Producto {{ $product->id }}">
+                                                                </a>
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -232,20 +237,23 @@
                                                         data-title="1-{{ $product->product_name }}">
                                                         <img src="{{ Storage::url($image->url) }}"
                                                             class="d-block w-100 img-fluid img-thumbnail"
-                                                            style="height: 700px; object-fit: cover;"
+                                                            style="height: 600px; object-fit: cover;"
                                                             alt="Imagen Producto {{ $product->id }}">
                                                     </a>
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="carousel-caption d-none d-md-block my-shadown">
-                                            <h5 class="fw-bold">{{ $product->product_name }}</h5>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-sm btn-info openModal"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal1-{{ $product->id }}">
-                                                Vista Previa
-                                            </button>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    {!! $product->product_extract !!}
+                                                    <button type="button" class="btn btn-sm btn-info openModal"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal-{{ $product->id }}">
+                                                        Vista Previa
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Modal -->
@@ -459,12 +467,15 @@
                     </div>
                 </div> --}}
                 <div class="row">
-                    <div class="col">
-                        <a class="btn btn-outline-info" href="#section1">
+                    <div class="col-lg-1">
+                        <a class="btn btn-outline-info float-start" href="#section1">
                             <i class="fas fa-chevron-up"></i>
                         </a>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-10">
+                        {!! $description->overview !!}
+                    </div>
+                    <div class="col-lg-1">
                         <a class="btn btn-outline-info float-end" href="#section3">
                             <i class="fas fa-chevron-down"></i>
                         </a>
@@ -472,10 +483,10 @@
                 </div>
             </div>
         </section>
-        <section class="section" id="section3" class="bg-light" style="height: 100vh;">
+        <section class="section" id="section3" class="bg-light" style="height: 100vh; padding-top: 90px;">
             <div class="container-fluid text-center" style="padding-left: 60px; padding-right: 60px;">
                 <div class="row">
-                    <div class="card mb-3">
+                    <div class="card">
                         <div class="row">
                             <div class="col-lg-2 col-md-4 col-sm-12">
                                 <img src="{{ asset('vendor/adminlte/dist/img/logo-ludeno.png') }}"
@@ -494,6 +505,19 @@
                                     <div class="row">
                                         <div class="col">
                                             <figure class="figure">
+                                                <img src="{{ asset('img/whatsapp.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="https://wa.me/+59170546730" target="_blank"
+                                                        class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col">
+                                            <figure class="figure">
                                                 <img src="{{ asset('img/facebook.png') }}" width="150"
                                                     height="150" class="figure-img img-fluid rounded"
                                                     alt="...">
@@ -501,19 +525,6 @@
                                                     <a href="#"
                                                         class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
                                                         <i class="fab fa-facebook"></i> Facebook
-                                                    </a>
-                                                </figcaption>
-                                            </figure>
-                                        </div>
-                                        <div class="col">
-                                            <figure class="figure">
-                                                <img src="{{ asset('img/youtube.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
-                                                <figcaption class="figure-caption text-center">
-                                                    <a href="#"
-                                                        class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
-                                                        <i class="fab fa-youtube"></i> YouTube
                                                     </a>
                                                 </figcaption>
                                             </figure>
@@ -546,13 +557,27 @@
                                         </div>
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/whatsapp.png') }}" width="150"
+                                                <img src="{{ asset('img/website.png') }}" width="150"
                                                     height="150" class="figure-img img-fluid rounded"
                                                     alt="...">
                                                 <figcaption class="figure-caption text-center">
                                                     <a href="https://wa.me/+59170546730" target="_blank"
-                                                        class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
-                                                        <i class="fab fa-whatsapp"></i> WhatsApp
+                                                        class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fas fa-pager"></i> ludeño.com
+                                                    </a>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <div class="col">
+                                            <figure class="figure">
+                                                <img src="{{ asset('img/youtube.png') }}" width="150"
+                                                    height="150" class="figure-img img-fluid rounded"
+                                                    alt="...">
+                                                <figcaption class="figure-caption text-center">
+                                                    <a href="https://www.youtube.com/channel/UC-YKCj0ZD7I_x34bifkxBIg"
+                                                        target="_blank"
+                                                        class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
+                                                        <i class="fab fa-youtube"></i> YouTube
                                                     </a>
                                                 </figcaption>
                                             </figure>
@@ -563,63 +588,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="row text-center text-md-left">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mx-auto mt-3">
-                        <div class="card mb-3">
+                <div class="row text-center">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="card">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('img/ubication.png') }}" class="img-fluid rounded-start"
-                                        alt="...">
+                                    <img src="{{ Storage::url($address->address_foto) }}" class="img-fluid rounded"
+                                        alt="Imagen {{ $address->id }}">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h1 class="card-title text-info mb-3">Oficina Central</h1>
-                                        <p class="card-text text-secondary fs-4">El Alto, Zona Villa Dolores</p>
-                                        <p class="card-text text-secondary fs-4">Av. Antofagasta Esq. Calle 10.</p>
-                                        <p class="card-text">
-                                            <small class="text-body-secondary fs-5">Escanear el código para abrir la
-                                                ubucación.</small>
-                                        </p>
+                                        {!! $address->address_office !!}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mx-auto mt-3">
+                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                         <div>
                             <!-- Reemplaza 'VIDEO_ID' con el ID único de tu video de YouTube -->
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/i1kTBcr6y0c"
+                            <iframe width="560" height="300" src="https://www.youtube.com/embed/i1kTBcr6y0c"
                                 frameborder="0" allowfullscreen></iframe>
                         </div>
-                        <a href="#section2" class="btn btn-info btn-sm">Subir</a>
-                        <a href="#section4" class="btn btn-info btn-sm">Bajar</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section" id="section4" class="bg-light" style="height: 100vh; padding-top: 128px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h2 class="mb-4">ACERCA DE NOSOTROS</h2>
-                        <h4>CONSTRUCCIÓN EN ARTE MODERNO</h4>
-                        <h6>LUDEÑO PLASMANDO TUS SUEÑOS</h6>
-                        <p class="lead">Que el trabajo hable por nosotros.</p>
-                        <p>100 % CALIDAD</p>
-                        <p>14 AÑOS DE EXPERIENCIA</p>
-                        <p>599 OBRAS FINALIZADAS</p>
-                        <a href="#section3" class="btn btn-info btn-sm">Subir</a>
-                        <a href="#section5" class="btn btn-info btn-sm">Bajar</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <img src="{{ asset('img/portada-principal-5.jpg') }}" class="img-fluid"
-                            alt="Acerca de Nosotros">
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
+    {{-- <footer>
         <section class="section" id="section5" class="bg-light text-dark">
             <div class="container text-center text-md-left">
                 <div class="row">
@@ -651,7 +647,7 @@
                 </div>
             </div>
         </section>
-    </footer>
+    </footer> --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

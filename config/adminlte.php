@@ -314,6 +314,18 @@ return [
             'icon'        => 'fas fa-fw fa-tags',
             'active' => ['admin/spots*'],
         ],
+        [
+            'text'        => 'Dirección Oficina',
+            'route'         => 'admin.address.index',
+            'icon'        => 'fas fa-fw fa-map-marked-alt',
+            'active' => ['admin/address*'],
+        ],
+        [
+            'text'        => 'Productos Descripción',
+            'route'         => 'admin.descriptions.index',
+            'icon'        => 'fas fa-fw fa-map-marked-alt',
+            'active' => ['admin/descriptions*'],
+        ],
         ['header' => 'ADMINISTRADOR'],
         [
             'text' => 'Categorías',
@@ -332,6 +344,7 @@ return [
             'text' => 'Productos',
             'route' => 'admin.products.index',
             'icon' => 'fas fa-fw fa-clipboard',
+            'active' => ['admin/products*'],
         ],
         [
             'text' => 'Nuevo Producto',
