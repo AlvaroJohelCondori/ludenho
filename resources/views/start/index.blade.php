@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>LUDEÑO</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -17,7 +17,7 @@
     <header>
         <div>
             <nav class="navbar navbar-expand-lg fs-4 fixed-top bg-primary">
-                <div class="container" style="padding-left: 60px; padding-right: 50px;">
+                <div class="container">
                     <a class="navbar-brand fw-bold fs-2 text-white" href="/">
                         <img src="{{ asset('img/logo2.png') }}" alt="" height="60">
                     </a>
@@ -34,21 +34,6 @@
                             <li class="nav-item ms-5">
                                 <a class="nav-link fw-bold text-white" href="#section2">SERVICIOS</a>
                             </li>
-                            {{-- <li class="nav-item ms-5 dropdown">
-                                <a class="nav-link fw-bold text-white dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    NUESTROS SERVICIOS
-                                </a>
-                                <ul class="dropdown-menu">
-                                    @foreach ($categories as $category)
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('products.category', $category) }}">
-                                                {{ $category->category_name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </li> --}}
                             <li class="nav-item ms-5">
                                 <a class="nav-link fw-bold text-white" href="#section3">CONTACTOS</a>
                             </li>
@@ -59,32 +44,25 @@
         </div>
     </header>
     <main>
-        <section class="section active" id="section1" style="padding-top: 50px;">
-            <div class="container-fluid">
+        <section class="pt-5" id="section1">
+            <div>
                 <div class="row">
-                    <div class="col-lg-5"
-                        style="display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        text-align: center;
-                        background-color: {{ $start->start_color }};">
-                        <div>
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12"
+                        style="background-color: {{ $start->start_color }};">
+                        <div class="text-center h-100 d-flex flex-column justify-content-center">
                             <h1 class="text-warning fw-bold">{{ $start->start_title }}</h1>
                             <h2 class="fw-bold" style="font-size: 3.5rem;">
                                 <p>{{ $start->start_subtitle }}</p>
                             </h2>
-                            <a class="btn btn-outline-info btn-block btn-flat" href="#section2">
+                            <a class="btn btn-outline-info" href="#section2">
                                 <i class="fas fa-chevron-down"></i>
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-7 portada"
-                        style="background-image: url('{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}');
-                        background-position: right 60px;
-                        background-origin: content-box;
-                        padding-right: 60px;
-                        background-color: {{ $start->start_color }};">
+                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
+                        <img class="img-fluid h-100"
+                            src="{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}"
+                            alt="Imagen de fondo">
                         <div class="animate__animated animate__backInLeft"
                             style="position: absolute; bottom: 0; right: 60px;">
                             <img src="{{ asset('img/insignia3.png') }}" alt="Imagen Redonda"
@@ -98,35 +76,7 @@
                 </div>
             </div>
         </section>
-        {{-- <section id="section1" style="background-image: url('{{ Storage::url($start->image->url) }}');">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9 col-md-12 col-sm-12">
-                        <div class="card animate__animated animate__backInLeft card-principal">
-                            <div class="card-body">
-                                <h1 class="text-warning fw-bold">{{ $start->start_title }}</h1>
-                                <h2 class="text-white fw-bold" style="font-size: 3.5rem;">
-                                    <p>{{ $start->start_subtitle }}</p>
-                                </h2>
-                                <a class="btn btn-info btn-lg" href="#section2">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <img src="{{ asset('img/logo.png') }}" width="100%"
-                            class="img-fluid img-thumbnail animate__animated animate__backInLeft card-principal"
-                            alt="...">
-                    </div>
-                </div>
-                <div class="animate__animated animate__backInLeft" style="position: absolute; bottom: 0; right: 0;">
-                    <img src="{{ asset('img/insignia.png') }}" alt="Imagen Redonda" class="img-fluid rounded-circle"
-                        width="300" height="300">
-                </div>
-            </div>
-        </section> --}}
-        <section class="section" id="section2" class="bg-light" style="height: 100vh; padding-top: 90px;">
+        <section class="" id="section2" class="bg-light" style="height: 100vh; padding-top: 90px;">
             <div class="container-fluid" style="padding-right: 60px; padding-left: 60px;">
                 <div class="row">
                     <div class="d-block">
@@ -157,8 +107,8 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <div class="card">
+                                        <div class="carousel-caption d-none d-md-block text-center">
+                                            <div class="card mx-auto" style="width: 18rem;">
                                                 <div class="card-body">
                                                     {!! $product->product_extract !!}
                                                     <button type="button" class="btn btn-sm btn-info openModal"
@@ -173,7 +123,7 @@
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal-{{ $product->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel-{{ $product->id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-xl">
+                                        <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5"
@@ -184,28 +134,68 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {!! $product->product_body !!}
-                                                    <div class="row">
-                                                        @foreach ($product->images as $image)
-                                                            <div class="col">
-                                                                <a href="{{ Storage::url($image->url) }}"
-                                                                    data-lightbox="{{ $product->id }}"
-                                                                    data-title="{{ $product->product_name }}">
-                                                                    <img src="{{ Storage::url($image->url) }}"
-                                                                        class="d-block w-100 img-fluid img-thumbnail"
-                                                                        alt="Imagen Producto {{ $product->id }}">
-                                                                </a>
+                                                    <div class="row h-100">
+                                                        <div class="col-lg-4 position-relative">
+                                                            <div>
+                                                                @php
+                                                                    $positions = ['start', 'end', 'center'];
+                                                                    $imageCount = count($product->images);
+                                                                    $imageSize = $imageCount == 1 ? 500 : ($imageCount == 2 ? 400 : 265);
+                                                                @endphp
+                                                                @foreach ($product->images as $index => $image)
+                                                                    @php
+                                                                        $randomPosition = $positions[array_rand($positions)];
+                                                                    @endphp
+                                                                    @if ($imageCount == 1)
+                                                                        <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-50 start-50 translate-middle"
+                                                                            src="{{ Storage::url($image->url) }}"
+                                                                            alt=""
+                                                                            style="width: 500px; height: 500px;">
+                                                                    @elseif($imageCount == 2)
+                                                                        @if ($index == 0)
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-0 end-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 400px; height: 400px;">
+                                                                        @else
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute bottom-0 start-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 400px; height: 400px;">
+                                                                        @endif
+                                                                    @else
+                                                                        @if ($index == 0)
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-0 end-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 260px; height: 385px;">
+                                                                        @elseif($index == 1)
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-50 start-0 translate-middle-y"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 260px; height: 500px;">
+                                                                        @else
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute bottom-0 end-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 260px; height: 385px;">
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
                                                             </div>
-                                                        @endforeach
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            {!! $product->product_body !!}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-secondary"
                                                         data-bs-dismiss="modal">Cerrar</button>
-                                                    <a href="{{ route('products.show', $product) }}"
+                                                    {{-- <a href="{{ route('products.show', $product) }}"
                                                         class="btn btn-sm btn-success">
                                                         Ver Detalles
-                                                    </a>
+                                                    </a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -249,7 +239,7 @@
                                                     {!! $product->product_extract !!}
                                                     <button type="button" class="btn btn-sm btn-info openModal"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal-{{ $product->id }}">
+                                                        data-bs-target="#exampleModal1-{{ $product->id }}">
                                                         Vista Previa
                                                     </button>
                                                 </div>
@@ -274,9 +264,13 @@
                                                     <div class="row">
                                                         @foreach ($product->images as $image)
                                                             <div class="col">
-                                                                <img src="{{ Storage::url($image->url) }}"
-                                                                    class="d-block w-100 img-fluid img-thumbnail"
-                                                                    alt="Imagen Producto {{ $product->id }}">
+                                                                <a href="{{ Storage::url($image->url) }}"
+                                                                    data-lightbox="m2-{{ $product->id }}"
+                                                                    data-title="{{ $product->product_name }}">
+                                                                    <img src="{{ Storage::url($image->url) }}"
+                                                                        class="d-block w-100 img-fluid img-thumbnail"
+                                                                        alt="Imagen Producto {{ $product->id }}">
+                                                                </a>
                                                             </div>
                                                         @endforeach
                                                     </div>
@@ -308,164 +302,6 @@
                     </div>
                 </div>
                 <hr>
-                {{-- <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="row text-center">
-                            <div class="col">
-                                <figure class="figure">
-                                    <img src="{{ asset('img/quotations.png') }}" width="100" height="100"
-                                        class="figure-img img-fluid rounded" alt="...">
-                                    <figcaption class="figure-caption fs-5">
-                                        <h3>Cotizaciones</h3>
-                                        ¿Listo para dar vida a tu visión? Obtén una cotización personalizada con Ludeño
-                                        Ingeniería en Vidrio y Aluminio. Nuestro equipo está preparado para transformar
-                                        tus ideas en proyectos con presupuestos adaptados a tus necesidades.
-                                        ¡Contáctanos hoy para comenzar!
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col">
-                                <figure class="figure">
-                                    <img src="{{ asset('img/desing.png') }}" width="100" height="100"
-                                        class="figure-img img-fluid rounded" alt="...">
-                                    <figcaption class="figure-caption fs-5">
-                                        <h3>Diseño</h3>
-                                        Donde el diseño se encuentra con la innovación. Construimos fachadas flotantes y
-                                        carpintería en aluminio, melamina y vidrio templado con precisión y estilo
-                                        excepcionales. Cada proyecto es una expresión única de excelencia
-                                        arquitectónica.
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col">
-                                <figure class="figure">
-                                    <img src="{{ asset('img/construction.png') }}" width="100" height="100"
-                                        class="figure-img img-fluid rounded" alt="...">
-                                    <figcaption class="figure-caption fs-5">
-                                        <h3>Construcción</h3>
-                                        Pioneros en la construcción de fachadas flotantes y carpintería en aluminio,
-                                        melamina y vidrio templado. Nuestra dedicación se refleja en cada estructura,
-                                        fusionando innovación y calidad con estilo excepcional.
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- <div class="row">
-                    <div class="col-lg-8 col-md-8 col-sm-12">
-                        <div id="carouselProducts2" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselProducts2" data-bs-slide-to="0"
-                                    class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselProducts2" data-bs-slide-to="1"
-                                    aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselProducts2" data-bs-slide-to="2"
-                                    aria-label="Slide 3"></button>
-                            </div>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ asset('img/portada-principal-3.jpg') }}"
-                                                data-lightbox="gallery" data-title="...">
-                                                <img src="{{ asset('img/portada-principal-3.jpg') }}"
-                                                    style="width: 400px; height: 400px; object-fit: cover;"
-                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a href="{{ asset('img/portada-principal-4.jpg') }}"
-                                                data-lightbox="gallery" data-title="...">
-                                                <img src="{{ asset('img/portada-principal-4.jpg') }}"
-                                                    style="width: 400px; height: 400px; object-fit: cover;"
-                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-caption d-none d-md-block my-shadown">
-                                        <h5 class="fw-bold">First slide label</h5>
-                                        <p>Some representative placeholder content for the first slide.</p>
-                                        <button class="btn btn-sm btn-info">Ver Producto</button>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="{{ asset('img/portada-principal-8.jpg') }}" data-lightbox="gallery"
-                                        data-title="...">
-                                        <img src="{{ asset('img/portada-principal-8.jpg') }}"
-                                            style="width: 400px; height: 400px; object-fit: cover;"
-                                            class="d-block w-100 img-fluid img-thumbnail" alt="...">
-                                    </a>
-                                    <div class="carousel-caption d-none d-md-block my-shadown">
-                                        <h5 class="fw-bold">Second slide label</h5>
-                                        <p>Some representative placeholder content for the second slide.</p>
-                                        <button class="btn btn-sm btn-info">Ver Producto</button>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ asset('img/portada-principal-5.jpg') }}"
-                                                data-lightbox="gallery" data-title="...">
-                                                <img src="{{ asset('img/portada-principal-5.jpg') }}"
-                                                    style="width: 400px; height: 400px; object-fit: cover;"
-                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a href="{{ asset('img/portada-principal-6.jpg') }}"
-                                                data-lightbox="gallery" data-title="...">
-                                                <img src="{{ asset('img/portada-principal-6.jpg') }}"
-                                                    style="width: 400px; height: 400px; object-fit: cover;"
-                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
-                                            </a>
-                                        </div>
-                                        <div class="col">
-                                            <a href="{{ asset('img/portada-principal-10.jpg') }}"
-                                                data-lightbox="gallery" data-title="...">
-                                                <img src="{{ asset('img/portada-principal-10.jpg') }}"
-                                                    style="width: 400px; height: 400px; object-fit: cover;"
-                                                    class="d-block w-100 img-fluid img-thumbnail" alt="...">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-caption d-none d-md-block my-shadown">
-                                        <h5 class="fw-bold">Third slide label</h5>
-                                        <p>Some representative placeholder content for the third slide.</p>
-                                        <button class="btn btn-sm btn-info">Ver Producto</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts2"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts2"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                        <h2>Productos</h2>
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel expedita aut deleniti tenetur
-                            delectus magnam impedit iusto corrupti. Ut voluptate quas repellendus error qui, nesciunt
-                            ipsam ab sunt corrupti fuga.
-                        </p>
-                        <p>
-                            Como parte del servicio al cliente contamos con profesionales Arquitectos quienes se
-                            encargan de realizar:
-                        <ul>
-                            <li>Presupuesto.</li>
-                            <li>Medición de la Obra.</li>
-                            <li>Asesoramiento técnico.</li>
-                        </ul>
-                        </p>
-                    </div>
-                </div> --}}
                 <div class="row">
                     <div class="col-lg-1">
                         <a class="btn btn-outline-info float-start" href="#section1">
@@ -483,7 +319,7 @@
                 </div>
             </div>
         </section>
-        <section class="section" id="section3" class="bg-light" style="height: 100vh; padding-top: 90px;">
+        <section class="" id="section3" class="bg-light" style="height: 100vh; padding-top: 90px;">
             <div class="container-fluid text-center" style="padding-left: 60px; padding-right: 60px;">
                 <div class="row">
                     <div class="card">
@@ -615,39 +451,6 @@
             </div>
         </section>
     </main>
-    {{-- <footer>
-        <section class="section" id="section5" class="bg-light text-dark">
-            <div class="container text-center text-md-left">
-                <div class="row">
-                    <div class="col">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <a href="{{ asset('img/portada-principal-4.jpg') }}" data-lightbox="gallery"
-                                        data-title="...">
-                                        <img src="{{ asset('img/portada-principal-4.jpg') }}"
-                                            class="img-fluid rounded-start" alt="...">
-                                    </a>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Fachada Flotantes</h5>
-                                        <p class="card-text">Descripción de la fachada flotantes.</p>
-                                        <p class="card-text"><small class="text-body-secondary">Duración 25 días obra
-                                                bruta.</small></p>
-                                        <p class="card-text"><small class="text-body-secondary">Duración 35 días media
-                                                obra.</small></p>
-                                        <p class="card-text"><small class="text-body-secondary">Duración 15 días
-                                                finalización obra.</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </footer> --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

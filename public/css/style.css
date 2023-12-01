@@ -5,21 +5,10 @@
 }
 
 body {
-    /*overflow: hidden;*/
-    scroll-behavior: smooth;
+    /*overflow: hidden;
+    scroll-behavior: smooth;*/
+    overflow-x: hidden;
 }
-
-/*.navbar {
-    background-color: rgba(0, 0, 0, 0.5);
-}*/
-
-/*section {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}*/
 
 .portada {
     height: 100vh;
@@ -32,54 +21,6 @@ body {
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.slide1 {
-    background: linear-gradient(454deg, #4f4080, #9553ff);
-}
-
-.slide2 {
-    background: linear-gradient(454deg, #404c80, #53ff88);
-}
-
-.slide3 {
-    background: linear-gradient(454deg, #9574ff, #ff5353);
-}
-
 .my-shadown {
     background-color: rgba(0, 0, 0, 0.5);
-    /*background: rgb(2, 0, 36);
-    background: linear-gradient(
-        180deg,
-        rgba(2, 0, 36, 1) 0%,
-        rgba(0, 0, 0, 0.20772058823529416) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );*/
 }
-
-/*.main-1 {
-    position: relative;
-    background-image: url("../img/portada-principal-1.png");
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    padding: 280px 0 220px;
-}
-
-.main-1 {
-    position: relative;
-    background-image: url("../img/portada-principal-1.png");
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    padding: 280px 0 220px;
-}
-
-.main::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}*/
