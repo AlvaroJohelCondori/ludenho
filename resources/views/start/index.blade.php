@@ -59,24 +59,21 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12">
-                        <img class="img-fluid h-100"
-                            src="{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}"
-                            alt="Imagen de fondo">
+                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 portada"
+                        style="background-image: url('{{ $start->image ? Storage::url($start->image->url) : asset('img/not-image.jpeg') }}')">
                         <div class="animate__animated animate__backInLeft"
-                            style="position: absolute; bottom: 0; right: 60px;">
+                            style="position: absolute; bottom: 0; right: 0px;">
                             <img src="{{ asset('img/insignia3.png') }}" alt="Imagen Redonda"
                                 class="img-fluid rounded-circle" width="170" height="170">
                         </div>
-                        <div class="animate__animated animate__backInLeft"
-                            style="position: absolute; bottom: 0; center: 0;">
+                        <div style="position: absolute; bottom: 0; center: 0;">
                             <img src="{{ asset('img/logo2.png') }}" alt="Logo" class="img-fluid" width="500">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="" id="section2" class="bg-light" style="height: 100vh; padding-top: 90px;">
+        <section class="" id="section2" class="bg-light" style="padding-top: 90px;">
             <div class="container-fluid" style="padding-right: 60px; padding-left: 60px;">
                 <div class="row">
                     <div class="d-block">
@@ -88,7 +85,7 @@
                 </div>
                 <hr>
                 <div class="row g-5">
-                    <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($products as $product)
@@ -138,14 +135,9 @@
                                                         <div class="col-lg-4 position-relative">
                                                             <div>
                                                                 @php
-                                                                    $positions = ['start', 'end', 'center'];
                                                                     $imageCount = count($product->images);
-                                                                    $imageSize = $imageCount == 1 ? 500 : ($imageCount == 2 ? 400 : 265);
                                                                 @endphp
                                                                 @foreach ($product->images as $index => $image)
-                                                                    @php
-                                                                        $randomPosition = $positions[array_rand($positions)];
-                                                                    @endphp
                                                                     @if ($imageCount == 1)
                                                                         <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-50 start-50 translate-middle"
                                                                             src="{{ Storage::url($image->url) }}"
@@ -184,7 +176,7 @@
                                                                 @endforeach
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-8" style="padding-left: 50px;">
                                                             {!! $product->product_body !!}
                                                         </div>
                                                     </div>
@@ -192,10 +184,6 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-sm btn-secondary"
                                                         data-bs-dismiss="modal">Cerrar</button>
-                                                    {{-- <a href="{{ route('products.show', $product) }}"
-                                                        class="btn btn-sm btn-success">
-                                                        Ver Detalles
-                                                    </a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +202,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div id="carouselExample1" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($products as $product)
@@ -249,7 +237,7 @@
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal1-{{ $product->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel1-{{ $product->id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-xl">
+                                        <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5"
@@ -260,19 +248,54 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {!! $product->product_body !!}
-                                                    <div class="row">
-                                                        @foreach ($product->images as $image)
-                                                            <div class="col">
-                                                                <a href="{{ Storage::url($image->url) }}"
-                                                                    data-lightbox="m2-{{ $product->id }}"
-                                                                    data-title="{{ $product->product_name }}">
-                                                                    <img src="{{ Storage::url($image->url) }}"
-                                                                        class="d-block w-100 img-fluid img-thumbnail"
-                                                                        alt="Imagen Producto {{ $product->id }}">
-                                                                </a>
+                                                    <div class="row h-100">
+                                                        <div class="col-lg-4 position-relative">
+                                                            <div>
+                                                                @php
+                                                                    $imageCount = count($product->images);
+                                                                @endphp
+                                                                @foreach ($product->images as $index => $image)
+                                                                    @if ($imageCount == 1)
+                                                                        <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-50 start-50 translate-middle"
+                                                                            src="{{ Storage::url($image->url) }}"
+                                                                            alt=""
+                                                                            style="width: 500px; height: 500px;">
+                                                                    @elseif($imageCount == 2)
+                                                                        @if ($index == 0)
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-0 end-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 400px; height: 400px;">
+                                                                        @else
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute bottom-0 start-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 400px; height: 400px;">
+                                                                        @endif
+                                                                    @else
+                                                                        @if ($index == 0)
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-0 end-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 260px; height: 385px;">
+                                                                        @elseif($index == 1)
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute top-50 start-0 translate-middle-y"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 260px; height: 500px;">
+                                                                        @else
+                                                                            <img class="img-fluid img-thumbnail object-fit-cover position-absolute bottom-0 end-0"
+                                                                                src="{{ Storage::url($image->url) }}"
+                                                                                alt=""
+                                                                                style="width: 260px; height: 385px;">
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
                                                             </div>
-                                                        @endforeach
+                                                        </div>
+                                                        <div class="col-lg-8" style="padding-left: 50px;">
+                                                            {!! $product->product_body !!}
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -319,16 +342,12 @@
                 </div>
             </div>
         </section>
-        <section class="" id="section3" class="bg-light" style="height: 100vh; padding-top: 90px;">
+        <section class="" id="section3" class="bg-light" style="padding-top: 90px;">
             <div class="container-fluid text-center" style="padding-left: 60px; padding-right: 60px;">
                 <div class="row">
                     <div class="card">
                         <div class="row">
-                            <div class="col-lg-2 col-md-4 col-sm-12">
-                                <img src="{{ asset('vendor/adminlte/dist/img/logo-ludeno.png') }}"
-                                    class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-lg-10 col-md-8 col-sm-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="card-body">
                                     <h5 class="card-title text-warning mb-4 fs-1">CONTÁCTANOS</h5>
                                     <hr>
@@ -341,9 +360,9 @@
                                     <div class="row">
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/whatsapp.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
+                                                <img class="img-fluid" src="{{ asset('img/whatsapp.png') }}"
+                                                    width="150" height="150"
+                                                    class="figure-img img-fluid rounded" alt="...">
                                                 <figcaption class="figure-caption text-center">
                                                     <a href="https://wa.me/+59170546730" target="_blank"
                                                         class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
@@ -354,11 +373,12 @@
                                         </div>
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/facebook.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
+                                                <img class="img-fluid" src="{{ asset('img/facebook.png') }}"
+                                                    width="150" height="150"
+                                                    class="figure-img img-fluid rounded" alt="...">
                                                 <figcaption class="figure-caption text-center">
-                                                    <a href="#"
+                                                    <a href="https://www.facebook.com/ludenoconstruccion"
+                                                        target="_blank"
                                                         class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
                                                         <i class="fab fa-facebook"></i> Facebook
                                                     </a>
@@ -367,11 +387,12 @@
                                         </div>
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/tiktok.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
+                                                <img class="img-fluid" src="{{ asset('img/tiktok.png') }}"
+                                                    width="150" height="150"
+                                                    class="figure-img img-fluid rounded" alt="...">
                                                 <figcaption class="figure-caption text-center">
-                                                    <a href="#"
+                                                    <a href="https://www.tiktok.com/@fachadas_flotantes_lud"
+                                                        target="_blank"
                                                         class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
                                                         <i class="fab fa-tiktok"></i> TikTok
                                                     </a>
@@ -380,11 +401,12 @@
                                         </div>
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/instagram.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
+                                                <img class="img-fluid" src="{{ asset('img/instagram.png') }}"
+                                                    width="150" height="150"
+                                                    class="figure-img img-fluid rounded" alt="...">
                                                 <figcaption class="figure-caption text-center">
-                                                    <a href="#"
+                                                    <a href="https://www.instagram.com/fachadas_flotantes_ludeno/"
+                                                        target="_blank"
                                                         class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
                                                         <i class="fab fa-instagram"></i> Instagram
                                                     </a>
@@ -393,11 +415,11 @@
                                         </div>
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/website.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
+                                                <img class="img-fluid" src="{{ asset('img/website.png') }}"
+                                                    width="150" height="150"
+                                                    class="figure-img img-fluid rounded" alt="...">
                                                 <figcaption class="figure-caption text-center">
-                                                    <a href="https://wa.me/+59170546730" target="_blank"
+                                                    <a href="https://xn--ludeo-rta.com/" target="_blank"
                                                         class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-3">
                                                         <i class="fas fa-pager"></i> ludeño.com
                                                     </a>
@@ -406,9 +428,9 @@
                                         </div>
                                         <div class="col">
                                             <figure class="figure">
-                                                <img src="{{ asset('img/youtube.png') }}" width="150"
-                                                    height="150" class="figure-img img-fluid rounded"
-                                                    alt="...">
+                                                <img class="img-fluid" src="{{ asset('img/youtube.png') }}"
+                                                    width="150" height="150"
+                                                    class="figure-img img-fluid rounded" alt="...">
                                                 <figcaption class="figure-caption text-center">
                                                     <a href="https://www.youtube.com/channel/UC-YKCj0ZD7I_x34bifkxBIg"
                                                         target="_blank"
@@ -424,15 +446,16 @@
                         </div>
                     </div>
                 </div>
+                <hr>
                 <div class="row text-center">
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
                                     <img src="{{ Storage::url($address->address_foto) }}" class="img-fluid rounded"
                                         alt="Imagen {{ $address->id }}">
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-xl-8 col-lg-6 col-md-12 col-sm-12">
                                     <div class="card-body">
                                         {!! $address->address_office !!}
                                     </div>
@@ -440,10 +463,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                         <div>
                             <!-- Reemplaza 'VIDEO_ID' con el ID único de tu video de YouTube -->
-                            <iframe width="560" height="300" src="https://www.youtube.com/embed/i1kTBcr6y0c"
+                            <iframe width="560" height="270" src="https://www.youtube.com/embed/i1kTBcr6y0c"
                                 frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
